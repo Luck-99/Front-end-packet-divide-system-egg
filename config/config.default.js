@@ -23,6 +23,13 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  // CSRF enable false
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+
   return {
     ...config,
     ...userConfig,
