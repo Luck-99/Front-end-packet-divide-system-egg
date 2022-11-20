@@ -40,9 +40,10 @@ class UserController extends Controller {
   async addCookie() {
     const { ctx } = this;
     ctx.cookies.set('user', 'user.com', {
-      maxAge: 1000 * 2,
+      maxAge: 1000 * 10,
       httpOnly: true,
     });
+    ctx.session.username = 'username';
     ctx.body = {
       status: 200,
       data: 'cookie add success',
@@ -51,6 +52,7 @@ class UserController extends Controller {
   async delCookie() {
     const { ctx } = this;
     ctx.cookies.set('user', null);
+    ctx.session.username = null;
     ctx.body = {
       status: 200,
       data: 'cookie del success',
@@ -59,6 +61,7 @@ class UserController extends Controller {
   async editCookie() {
     const { ctx } = this;
     ctx.cookies.set('user', 'username.com');
+    ctx.session.username = 'username.com';
     ctx.body = {
       status: 200,
       data: 'cookie edit success',
@@ -67,7 +70,8 @@ class UserController extends Controller {
   async showCookie() {
     const { ctx } = this;
     const userCookie = ctx.cookies.get('user');
-    console.log(userCookie);
+    const username = ctx.session.username;
+    console.log(userCookie, username);
     ctx.body = {
       status: 200,
       data: 'cookie show success',

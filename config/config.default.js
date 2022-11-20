@@ -29,6 +29,12 @@ module.exports = appInfo => {
       enable: false,
     },
   };
+  config.session = {
+    key: 'my_session',
+    httpOnly: true,
+    maxAge: 1000 * 60,
+    renew: true, // 自动刷新过期时间
+  };
 
   return {
     ...config,
