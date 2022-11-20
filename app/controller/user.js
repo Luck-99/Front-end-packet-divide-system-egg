@@ -5,6 +5,7 @@ const Controller = require('egg').Controller;
 class UserController extends Controller {
   async index() {
     const { ctx } = this;
+    console.log(ctx.session.counter);
     ctx.body = '<h1>user</h1>';
   }
   async getUsers() { // 异步模式
