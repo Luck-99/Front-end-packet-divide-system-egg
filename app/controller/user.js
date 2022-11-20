@@ -18,8 +18,9 @@ class UserController extends Controller {
   async getUser() {
     // 自由传参模式
     const { ctx } = this;
-    const { name } = ctx.query;
-    ctx.body = '姓名' + name + '所有参数：' + JSON.stringify(ctx.query);
+    const res = await ctx.service.user.getUser('666');
+    // const { name } = ctx.query;
+    ctx.body = res;
   }
   async getUser2() {
     // 严格传参模式
@@ -33,6 +34,43 @@ class UserController extends Controller {
     ctx.body = {
       status: 200,
       data: ctx.request.body,
+    };
+  }
+
+  async addCookie() {
+    const { ctx } = this;
+    ctx.cookies.set('user', 'user.com', {
+      maxAge: 1000 * 2,
+      httpOnly: true,
+    });
+    ctx.body = {
+      status: 200,
+      data: 'cookie add success',
+    };
+  }
+  async delCookie() {
+    const { ctx } = this;
+    ctx.cookies.set('user', null);
+    ctx.body = {
+      status: 200,
+      data: 'cookie del success',
+    };
+  }
+  async editCookie() {
+    const { ctx } = this;
+    ctx.cookies.set('user', 'username.com');
+    ctx.body = {
+      status: 200,
+      data: 'cookie edit success',
+    };
+  }
+  async showCookie() {
+    const { ctx } = this;
+    const userCookie = ctx.cookies.get('user');
+    console.log(userCookie);
+    ctx.body = {
+      status: 200,
+      data: 'cookie show success',
     };
   }
 

@@ -12,6 +12,13 @@ class HomeController extends Controller {
     const { ctx } = this;
     ctx.body = '<h1>hello</h1>';
   }
+
+  async testGetUser() {
+    const { ctx } = this;
+    const { id } = ctx.query;
+    const res = await ctx.service.user.getUser(id);
+    ctx.body = res;
+  }
 }
 
 module.exports = HomeController;
