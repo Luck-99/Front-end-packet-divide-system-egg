@@ -44,6 +44,8 @@ class UserController extends Controller {
       maxAge: 1000 * 10,
       httpOnly: true,
     });
+    const base64 = ctx.helper.base64Encode('username');
+    console.log(base64);
     ctx.session.username = 'username';
     ctx.body = {
       status: 200,
