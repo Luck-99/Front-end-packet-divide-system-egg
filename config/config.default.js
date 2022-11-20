@@ -36,6 +36,18 @@ module.exports = appInfo => {
     renew: true, // 自动刷新过期时间
   };
 
+  config.mysql = {
+    app: true, // 是否挂在到app上
+    agent: false, // 是否挂到代理上
+    client: {
+      host: '127.0.0.1', // 数据库地址
+      port: '3306', // 端口
+      user: 'root',
+      password: '520+zzl.',
+      database: 'mydatabase',
+    },
+  };
+
   return {
     ...config,
     ...userConfig,
