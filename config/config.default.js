@@ -47,6 +47,9 @@ module.exports = appInfo => {
       database: 'mydatabase',
     },
   };
+  config.jwt = {
+    secret: 'APEX-Front-end-packet-divide-system',
+  };
 
   return {
     ...config,

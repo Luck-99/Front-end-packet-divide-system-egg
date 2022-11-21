@@ -81,5 +81,46 @@ class UserController extends Controller {
     };
   }
 
+
+  async login() {
+    try {
+      const { ctx, app } = this;
+      const { username, password } = ctx.request.body;
+      // 根据用户名查找对应的id
+      const userInfo = await ctx.service.user.getUserByName(username);
+      if (!userInfo || !userInfo.id) { // 没找到用户
+        console.log(userInfo);
+        ctx.body = {
+          status: 500,
+          desc: '账号不存在',
+          data: userInfo,
+        };
+        return;
+      }
+      if (userInfo && password !== userInfo.password) { // 用户存在，密码错误
+        ctx.body = {
+          status: 500,
+          desc: '账号密码错误',
+          data: null,
+        };
+        return;
+      }
+      const token = app.jwt.sign({ id: userInfo.id,
+        username: userInfo.username,
+        exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60), // 24小时有效
+      }, app.config.jwt.secret);
+      ctx.body = {
+        status: 200,
+        desc: '登录成功',
+        data: { token },
+      };
+    } catch (error) {
+      this.ctx.body = {
+        status: 500,
+        desc: '登录失败',
+        data: null,
+      };
+    }
+  }
 }
 module.exports = UserController;

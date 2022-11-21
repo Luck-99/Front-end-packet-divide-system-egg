@@ -25,4 +25,7 @@ module.exports = app => {
   router.get('/delUser', controller.userManage.delUser);
   router.get('/updateUser', controller.userManage.updateUser);
   router.get('/getUsers', controller.userManage.getUsers);
+
+
+  router.post('/login', controller.user.login);
 };

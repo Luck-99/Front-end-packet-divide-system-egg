@@ -25,14 +25,12 @@ class UserManage extends Controller {
   async updateUser() {
     const { ctx } = this;
     const params = {
-      name: '小白纸',
-      sex: '女',
-      age: 30,
-      address: '云南',
+      userId: 1,
+      id: 1,
     };
     const options = {
       where: {
-        userId: 3,
+        userId: 1,
       },
     };
     const res = await ctx.service.db.updateUser(params, options);
