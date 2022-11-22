@@ -5,7 +5,7 @@
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
-module.exports = (appInfo) => {
+module.exports = appInfo => {
   /**
    * built-in config
    * @type {Egg.EggAppConfig}
@@ -16,7 +16,7 @@ module.exports = (appInfo) => {
   config.keys = appInfo.name + '_1650721011656_8991';
 
   // add your middleware config here
-  config.middleware = ['counter', 'errorHandler'];
+  config.middleware = [ 'counter', 'errorHandler' ];
 
   config.errorHandler = {
     match: '/',

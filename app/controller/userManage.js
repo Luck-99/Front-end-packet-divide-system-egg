@@ -1,6 +1,5 @@
 'use strict';
 
-
 const Controller = require('egg').Controller;
 
 class UserManage extends Controller {
