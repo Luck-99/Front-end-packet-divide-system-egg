@@ -24,6 +24,7 @@ module.exports = appInfo => {
 
   // add your user config here
   const userConfig = {
+    JENKINSURL: 'localhost',
     // myAppName: 'egg',
   };
 
