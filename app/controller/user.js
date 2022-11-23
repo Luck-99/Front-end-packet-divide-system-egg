@@ -1,6 +1,6 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+const Controller = require('./base_controller');
 
 class UserController extends Controller {
   async index() {
@@ -90,37 +90,22 @@ class UserController extends Controller {
       const userInfo = await ctx.service.user.getUserByName(username);
       if (!userInfo || !userInfo.id) { // 没找到用户
         console.log(userInfo);
-        ctx.body = {
-          status: 500,
-          desc: '账号不存在',
-          data: userInfo,
-        };
+        this.failed('账号不存在');
         return;
       }
       if (userInfo && password !== userInfo.password) { // 用户存在，密码错误
-        ctx.body = {
-          status: 500,
-          desc: '账号密码错误',
-          data: null,
-        };
+        this.failed('账号密码错误');
         return;
       }
       const token = app.jwt.sign({ id: userInfo.id,
         username: userInfo.username,
         exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60), // 24小时有效
       }, app.config.jwt.secret);
-      ctx.body = {
-        status: 200,
-        desc: '登录成功',
-        data: { token },
-      };
+      this.success('登录成功', { token });
     } catch (error) {
-      this.ctx.body = {
-        status: 500,
-        desc: '登录失败',
-        data: null,
-      };
+      this.failed('登录失败');
     }
   }
+
 }
 module.exports = UserController;
