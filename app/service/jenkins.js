@@ -1,22 +1,22 @@
-'use strict';
+'use strict'
 
-const Service = require('egg').Service;
+const Service = require('egg').Service
 
 class JenkinsService extends Service {
   async getCrumb() {
     try {
-      const { ctx, config } = this;
-      const { JENKINSURL } = config;
-      const { data } = await ctx.curl(`${JENKINSURL}:xxx.com/api`, {
+      const { ctx, config } = this
+      const { JENKINSURL } = config
+      const { data } = await ctx.curl(`${JENKINSURL}/crumbIssuer/api/json`, {
         method: 'get',
         dataType: 'json',
-      });
-      return data;
+      })
+      return data
     } catch (error) {
-      console.log(error);
-      return null;
+      console.log(error)
+      return null
     }
   }
 }
 
-module.exports = JenkinsService;
+module.exports = JenkinsService
