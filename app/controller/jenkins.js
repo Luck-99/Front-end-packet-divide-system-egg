@@ -3,7 +3,7 @@
 const Controller = require('./base_controller')
 
 class JenkinsController extends Controller {
-  async getAllJob() {
+  async getAllJobs() {
     try {
       const { ctx, config } = this
       const { JENKINSURL } = config
@@ -18,7 +18,7 @@ class JenkinsController extends Controller {
         },
         dataType: 'json',
       })
-      this.success('获取成功', res?.data)
+      this.success('获取成功', res?.data?.jobs)
     } catch (error) {
       this.failed('获取失败')
       console.log(error)
