@@ -29,6 +29,13 @@ module.exports = (app) => {
   router.post('/login', controller.user.login)
   router.get('/jenkins/getAllJobs', controller.jenkins.getAllJobs)
   router.get('/jenkins/buildJob', controller.jenkins.buildJob)
+  router.get(
+    '/jenkins/buildWithParameters',
+    controller.jenkins.buildWithParameters
+  )
+  router.get('/jenkins/getBuildInfo', controller.jenkins.getBuildInfo)
+  router.get('/jenkins/getLastBuildInfo', controller.jenkins.getLastBuildInfo)
+  router.get('/jenkins/getQueue', controller.jenkins.getQueue)
   router.get('/jenkins/getJobInfo', controller.jenkins.getJobInfo)
 
   router.get('/verdaccio/getAllPackages', controller.verdaccio.getAllPackages)

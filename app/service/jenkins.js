@@ -8,7 +8,7 @@ class JenkinsService extends Service {
       const { ctx, config } = this
       const { JENKINSURL } = config
       const { data } = await ctx.curl(`${JENKINSURL}/crumbIssuer/api/json`, {
-        method: 'get',
+        method: 'GET',
         dataType: 'json',
       })
       return data

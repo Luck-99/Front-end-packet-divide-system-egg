@@ -33,6 +33,7 @@ module.exports = (appInfo) => {
 
   // add your user config here
   const userConfig = {
+    JENKINSJOBNAME: 'product-system-product-management',
     JENKINSURL: `${protocol}://${name}:${token}@${domain}:${port}`,
     VERDACCIOURL: 'http://192.168.183.123:4873/-/verdaccio',
     // myAppName: 'egg',

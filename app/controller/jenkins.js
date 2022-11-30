@@ -30,9 +30,9 @@ class JenkinsController extends Controller {
     try {
       const {
         ctx,
-        config: { JENKINSURL },
+        config: { JENKINSURL, JENKINSJOBNAME },
       } = this
-      const { name } = ctx.query
+      const { name = JENKINSJOBNAME } = ctx.query
       const { crumb, crumbRequestField: Field } =
         await ctx.service.jenkins.getCrumb()
 
@@ -55,14 +55,108 @@ class JenkinsController extends Controller {
     }
   }
 
+  async buildWithParameters() {
+    try {
+      const {
+        ctx,
+        config: { JENKINSURL, JENKINSJOBNAME },
+      } = this
+      const { name = JENKINSJOBNAME, projectName } = ctx.query
+      const { data } = await ctx.curl(
+        `${JENKINSURL}/job/${name}/buildWithParameters?projectName=${projectName}`,
+        {
+          method: 'POST',
+          dataType: 'json',
+        }
+      )
+      this.success('构建成功', data)
+    } catch (error) {
+      console.log(error)
+      this.failed('构建失败')
+      return
+    }
+  }
+
+  async getBuildInfo() {
+    try {
+      const {
+        ctx,
+        config: { JENKINSURL, JENKINSJOBNAME },
+      } = this
+      const { name = JENKINSJOBNAME, id } = ctx.query
+      const { data } = await ctx.curl(
+        `${JENKINSURL}/job/${name}/${id}/api/json`,
+        {
+          method: 'GET',
+          data: {
+            pretty: true,
+          },
+          dataType: 'json',
+        }
+      )
+      this.success('获取成功', data)
+    } catch (error) {
+      console.log(error)
+      this.failed('获取失败')
+      return
+    }
+  }
+
+  async getLastBuildInfo() {
+    try {
+      const {
+        ctx,
+        config: { JENKINSURL, JENKINSJOBNAME },
+      } = this
+      const { name = JENKINSJOBNAME } = ctx.query
+      const { data } = await ctx.curl(
+        `${JENKINSURL}/job/${name}/lastBuild/api/json`,
+        {
+          method: 'GET',
+          data: {
+            pretty: true,
+          },
+          dataType: 'json',
+        }
+      )
+      this.success('获取成功', data)
+    } catch (error) {
+      console.log(error)
+      this.failed('获取失败')
+      return
+    }
+  }
+
+  async getQueue() {
+    try {
+      const {
+        ctx,
+        config: { JENKINSURL, JENKINSJOBNAME },
+      } = this
+      const { name = JENKINSJOBNAME, id } = ctx.query
+      const { data } = await ctx.curl(`${JENKINSURL}/queue/api/json`, {
+        method: 'POST',
+        data: {
+          pretty: true,
+        },
+        dataType: 'json',
+      })
+      this.success('获取成功', data)
+    } catch (error) {
+      console.log(error)
+      this.failed('获取失败')
+      return
+    }
+  }
+
   async getJobInfo() {
     try {
       const {
         ctx,
-        config: { JENKINSURL },
+        config: { JENKINSURL, JENKINSJOBNAME },
       } = this
       //tree=builds[displayName]{3,5},url[*]
-      const { name, tree = '*' } = ctx.query
+      const { name = JENKINSJOBNAME, tree = '*' } = ctx.query
       const res = await ctx.curl(`${JENKINSURL}/job/${name}/api/json`, {
         method: 'GET',
         data: {
