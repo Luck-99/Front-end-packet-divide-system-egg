@@ -22,9 +22,18 @@ module.exports = (appInfo) => {
     match: '/',
   }
 
+  const jenkinsConfig = {
+    name: '',
+    token: '',
+    protocol: 'http', //协议
+    domain: 'localhost', //域名
+    port: '9090', //端口
+  }
+  const { name, token, protocol, domain, port } = jenkinsConfig
+
   // add your user config here
   const userConfig = {
-    JENKINSURL: 'localhost:9090',
+    JENKINSURL: `${protocol}://${name}:${token}@${domain}:${port}`,
     VERDACCIOURL: 'http://192.168.183.123:4873/-/verdaccio',
     // myAppName: 'egg',
   }
