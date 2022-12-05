@@ -41,4 +41,7 @@ module.exports = (app) => {
 
   router.get('/verdaccio/getAllPackages', controller.verdaccio.getAllPackages)
   router.get('/verdaccio/getPackageInfo', controller.verdaccio.getPackageInfo)
+
+  router.get('/file/readFile', controller.file.readFile)
+  router.post('/file/writeFile', controller.file.writeFile)
 }
