@@ -1,15 +1,15 @@
-'use strict';
-const Subscription = require('egg').Subscription;
+'use strict'
+const Subscription = require('egg').Subscription
 
 class GetTime extends Subscription {
   static get schedule() {
     return {
-      // interval: '3s',// 3s 间隔
-      cron: '* */3 * * * *',
+      interval: '1000000s', // 3s 间隔
+      // cron: '* */3 * * * *',
       type: 'worker', // worker|all
       // all 类型：每台机器上的每个 worker 都会执行这个定时任务。
       // worker 每台机器上只有一个 worker 会执行这个定时任务，每次执行定时任务的 worker 的选择是随机的
-    };
+    }
   }
   // subscribe 是真正定时任务执行时被运行的函数
   async subscribe() {
@@ -28,7 +28,7 @@ class GetTime extends Subscription {
 //     ctx.app.cache = res.data;
 //   },
 // };
-module.exports = GetTime;
+module.exports = GetTime
 
 /*
 *    *    *    *    *    *
