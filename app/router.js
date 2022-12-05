@@ -5,7 +5,7 @@
  */
 module.exports = (app) => {
   const counter = app.middleware.counter()
-  const { router, controller } = app
+  const { router, controller, io } = app
   router.get('/', controller.home.index)
 
   router.get('/xz', controller.home.xz)
@@ -44,4 +44,6 @@ module.exports = (app) => {
 
   router.get('/file/readFile', controller.file.readFile)
   router.post('/file/writeFile', controller.file.writeFile)
+
+  io.of('/').route('chat', io.controller.chat)
 }

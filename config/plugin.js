@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /** @type Egg.EggPlugin */
 module.exports = {
@@ -7,11 +7,15 @@ module.exports = {
   //   enable: true,
   // }
   mysql: {
-    enable: true,
+    enable: false,
     package: 'egg-mysql',
   },
   jwt: {
     enable: true,
     package: 'egg-jwt',
   },
-};
+  io: {
+    enable: true,
+    package: 'egg-socket.io',
+  },
+}
