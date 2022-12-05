@@ -62,14 +62,24 @@ class JenkinsController extends Controller {
         config: { JENKINSURL, JENKINSJOBNAME },
       } = this
       const { name = JENKINSJOBNAME, projectName } = ctx.query
-      const { data } = await ctx.curl(
-        `${JENKINSURL}/job/${name}/buildWithParameters?projectName=${projectName}`,
-        {
-          method: 'POST',
-          dataType: 'json',
-        }
-      )
-      this.success('构建成功', data)
+      const { crumb, crumbRequestField: Field } =
+        await ctx.service.jenkins.getCrumb()
+
+      if (crumb) {
+        const { data } = await ctx.curl(
+          `${JENKINSURL}/job/${name}/buildWithParameters?projectName=${projectName}`,
+          {
+            method: 'POST',
+            headers: {
+              [Field]: crumb,
+            },
+            dataType: 'json',
+          }
+        )
+        this.success('构建成功', data)
+      } else {
+        this.failed('crumb获取失败')
+      }
     } catch (error) {
       console.log(error)
       this.failed('构建失败')
