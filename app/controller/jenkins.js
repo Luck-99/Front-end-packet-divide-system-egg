@@ -172,6 +172,29 @@ class JenkinsController extends Controller {
       return
     }
   }
+
+  async downloadFile() {
+    const {
+      ctx,
+      config: { JENKINSURL, JENKINSJOBNAME },
+      service: { jenkins },
+    } = this
+    const {
+      jobName = JENKINSJOBNAME,
+      downloadTarget = 'dist',
+      fileName = jobName,
+    } = ctx.query
+    try {
+      const url = `${JENKINSURL}/job/${jobName}/ws/${downloadTarget}/*zip*/${fileName}.zip`
+      const res = await ctx.curl(url, {
+        streaming: true,
+      })
+      ctx.type = 'zip'
+      ctx.body = res.res
+    } catch (error) {
+      this.failed('下载失败', error)
+    }
+  }
 }
 
 module.exports = JenkinsController
