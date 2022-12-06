@@ -38,6 +38,7 @@ module.exports = (app) => {
   router.get('/jenkins/getQueue', controller.jenkins.getQueue)
   router.get('/jenkins/getJobInfo', controller.jenkins.getJobInfo)
   router.get('/jenkins/downloadFile', controller.jenkins.downloadFile)
+  router.get('/jenkins/stopBuildJob', controller.jenkins.stopBuildJob)
 
   router.get('/verdaccio/getAllPackages', controller.verdaccio.getAllPackages)
   router.get('/verdaccio/getPackageInfo', controller.verdaccio.getPackageInfo)

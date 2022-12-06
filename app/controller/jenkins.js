@@ -200,7 +200,6 @@ class JenkinsController extends Controller {
     const {
       ctx,
       config: { JENKINSURL, JENKINSJOBNAME },
-      service: { jenkins },
     } = this
     const {
       jobName = JENKINSJOBNAME,
@@ -216,6 +215,36 @@ class JenkinsController extends Controller {
       ctx.body = res.res
     } catch (error) {
       this.failed('下载失败', error)
+    }
+  }
+
+  async stopBuildJob() {
+    const {
+      ctx,
+      config: { JENKINSURL, JENKINSJOBNAME },
+    } = this
+    const { jobName = JENKINSJOBNAME, id } = ctx.query
+    try {
+      const { crumb, crumbRequestField: Field } =
+        await ctx.service.jenkins.getCrumb()
+      if (crumb) {
+        const res = await ctx.curl(`${JENKINSURL}/job/${jobName}/${id}/stop`, {
+          method: 'POST',
+          headers: {
+            [Field]: crumb,
+          },
+          data: {
+            pretty: true,
+          },
+          dataType: 'json',
+        })
+        this.success('停止成功', res.data)
+      } else {
+        this.failed('crumb获取失败')
+      }
+    } catch (error) {
+      this.failed('停止失败', error)
+      return
     }
   }
 }
