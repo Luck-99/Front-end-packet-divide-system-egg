@@ -44,6 +44,7 @@ module.exports = (app) => {
 
   router.get('/file/readFile', controller.file.readFile)
   router.post('/file/writeFile', controller.file.writeFile)
+  router.get('/file/getProjects', controller.file.getProjects)
 
   io.of('/').route('chat', io.controller.chat)
 }

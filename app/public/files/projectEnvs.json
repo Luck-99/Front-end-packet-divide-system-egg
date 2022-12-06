@@ -1,0 +1,35 @@
+[
+  {
+    "key": "env_xingye",
+    "description": "兴业环境",
+    "id": 0,
+    "building": true,
+    "buildable": true,
+    "lastBuildTime": 0,
+    "builtOn": "小东",
+    "creatBy": "张三",
+    "creatTime":1670302180432
+  },
+  {
+    "key": "env_kaifa",
+    "description": "开发环境",
+    "id": 0,
+    "building": false,
+    "buildable": true,
+    "lastBuildTime": 1670303580432,
+    "builtOn": "张三",
+    "creatBy": "张三",
+    "creatTime":1670305080432
+  },
+  {
+    "key": "env_nanyin",
+    "description": "南银环境",
+    "id": 0,
+    "building": false,
+    "buildable": false,
+    "lastBuildTime": 0,
+    "builtOn": "王五",
+    "creatBy": "张三",
+    "creatTime":1670205180432
+  }
+]
