@@ -23,6 +23,15 @@ module.exports = (appInfo) => {
     match: '/',
   }
 
+  config.cluster = {
+    //生产端口配置
+    listen: {
+      path: '',
+      port: '7222',
+      hostname: '127.0.0.1', // 0.0.0.0
+    },
+  }
+
   const jenkinsConfig = {
     name: '',
     token: '',
@@ -32,13 +41,16 @@ module.exports = (appInfo) => {
   }
   const { name, token, protocol, domain, port } = jenkinsConfig
 
+  const fileConfig = {
+    FILEPATH: path.join(__dirname, '../', 'app/public/files'),
+    PROJECTENVSNAME: 'projectEnvs.json',
+  }
   // add your user config here
   const userConfig = {
     JENKINSJOBNAME: 'product-system-product-management',
     JENKINSURL: `${protocol}://${name}:${token}@${domain}:${port}`,
     VERDACCIOURL: 'http://192.168.183.123:4873/-/verdaccio',
-    FILEPATH: path.join(__dirname, '../', 'app/public/files'),
-    // myAppName: 'egg',
+    ...fileConfig,
   }
 
   // CSRF enable false
