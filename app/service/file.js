@@ -78,7 +78,7 @@ class FileService extends Service {
     }
   }
 
-  async changeEnv(envName, envData) {
+  async changeEnv(envName, devData) {
     const {
       config: { FILEPATH, GITFILEPATH },
     } = this
@@ -91,15 +91,15 @@ class FileService extends Service {
         if (!tempEnvData.dependencies) {
           tempEnvData.dependencies = {}
         }
-        if (typeof envData === 'string') {
+        if (typeof devData === 'string') {
           tempEnvData.dependencies = {
             ...tempEnvData.dependencies,
-            ...JSON.parse(envData),
+            ...JSON.parse(devData),
           }
-        } else if (typeof envData === 'object') {
+        } else if (typeof devData === 'object') {
           tempEnvData.dependencies = {
             ...tempEnvData.dependencies,
-            ...envData,
+            ...devData,
           }
         }
         return await this.writeFile(envPath, JSON.stringify(tempEnvData))
