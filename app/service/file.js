@@ -1,34 +1,112 @@
-'use strict';
+'use strict'
 
-const Service = require('egg').Service;
+const Service = require('egg').Service
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
+
+const { execSync } = require('child_process')
 
 class FileService extends Service {
   async readFile(fileName) {
     const {
       config: { FILEPATH },
-    } = this;
+    } = this
     try {
-      return fs.readFileSync(path.join(FILEPATH, fileName), 'utf8');
+      return fs.readFileSync(path.join(FILEPATH, fileName), 'utf8')
     } catch (error) {
-      console.log(error);
-      return null;
+      console.log(error)
+      return null
     }
   }
 
   async writeFile(fileName, info = '') {
     const {
       config: { FILEPATH },
-    } = this;
+    } = this
     try {
-      return fs.writeFileSync(path.join(FILEPATH, fileName), info);
+      return fs.writeFileSync(path.join(FILEPATH, fileName), info)
     } catch (error) {
-      console.log(error);
-      return error;
+      console.log(error)
+      return error
     }
+  }
+
+  async existGitPath() {
+    const {
+      config: { FILEPATH, GITFILEPATH },
+    } = this
+    return fs.existsSync(path.join(FILEPATH, GITFILEPATH))
+  }
+
+  async cloneGit() {
+    const {
+      config: { FILEPATH, GITPATH },
+    } = this
+    try {
+      if (!(await this.existGitPath())) {
+        return execSync(`git clone ${GITPATH}`, {
+          cwd: FILEPATH,
+        })
+      }
+      return true
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }
+
+  async commitGit(userName, envName) {
+    const {
+      config: { FILEPATH, GITFILEPATH, GITPATH },
+    } = this
+    try {
+      if (this.existGitPath()) {
+        execSync(`git commit -am "refactor:${userName} 更新了 ${envName}"`, {
+          cwd: path.join(FILEPATH, GITFILEPATH),
+          encoding: 'utf-8',
+        })
+        execSync(`git push`, {
+          cwd: path.join(FILEPATH, GITFILEPATH),
+          encoding: 'utf-8',
+        })
+        return null
+      }
+    } catch (error) {
+      console.log(error)
+      return error.stdout
+    }
+  }
+
+  async changeEnv(envName, envData) {
+    const {
+      config: { FILEPATH, GITFILEPATH },
+    } = this
+    const envPath = path.join(GITFILEPATH, `${envName}.json`)
+    const existPath = fs.existsSync(path.join(FILEPATH, envPath))
+    if (existPath) {
+      const envFileData = await this.readFile(envPath)
+      if (envFileData) {
+        const tempEnvData = JSON.parse(envFileData)
+        if (!tempEnvData.dependencies) {
+          tempEnvData.dependencies = {}
+        }
+        if (typeof envData === 'string') {
+          tempEnvData.dependencies = {
+            ...tempEnvData.dependencies,
+            ...JSON.parse(envData),
+          }
+        } else if (typeof envData === 'object') {
+          tempEnvData.dependencies = {
+            ...tempEnvData.dependencies,
+            ...envData,
+          }
+        }
+        return await this.writeFile(envPath, JSON.stringify(tempEnvData))
+      }
+    }
+    return '地址不存在'
   }
 }
 
-module.exports = FileService;
+module.exports = FileService

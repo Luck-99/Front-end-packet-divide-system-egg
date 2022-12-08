@@ -44,6 +44,28 @@ class FileController extends Controller {
       this.failed('获取项目失败', {})
     }
   }
+
+  async writeEnv() {
+    const {
+      ctx: { request },
+      service: { file },
+      config: { PROJECTENVSNAME },
+    } = this
+    const { depData = '{}', envName } = request.body
+    const userName = 'admin'
+    const cloneGit = await file.cloneGit()
+    if (cloneGit) {
+      const changeEnv = await file.changeEnv(envName, depData)
+      const commitGit = await file.commitGit(userName, envName)
+      if (!changeEnv && !commitGit) {
+        this.success('更改配置成功')
+      } else {
+        this.failed('更改配置失败', changeEnv ? changeEnv : commitGit)
+      }
+    } else {
+      this.failed('git clone 失败', cloneGit)
+    }
+  }
 }
 
 module.exports = FileController
