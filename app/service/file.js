@@ -41,18 +41,24 @@ class FileService extends Service {
 
   async cloneGit() {
     const {
-      config: { FILEPATH, GITPATH },
+      config: { FILEPATH, GITPATH, GITFILEPATH },
     } = this
     try {
-      if (!(await this.existGitPath())) {
-        return execSync(`git clone ${GITPATH}`, {
+      if (await this.existGitPath()) {
+        execSync('git pull', {
+          cwd: path.join(FILEPATH, GITFILEPATH),
+          encoding: 'utf-8',
+        })
+      } else {
+        execSync(`git clone ${GITPATH}`, {
           cwd: FILEPATH,
+          encoding: 'utf-8',
         })
       }
-      return true
+      return null
     } catch (error) {
       console.log(error)
-      return false
+      return error.stdout
     }
   }
 
@@ -61,7 +67,7 @@ class FileService extends Service {
       config: { FILEPATH, GITFILEPATH, GITPATH },
     } = this
     try {
-      if (this.existGitPath()) {
+      if (await this.existGitPath()) {
         execSync(`git commit -am "refactor:${userName} 更新了 ${envName}"`, {
           cwd: path.join(FILEPATH, GITFILEPATH),
           encoding: 'utf-8',

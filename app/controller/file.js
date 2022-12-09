@@ -54,7 +54,7 @@ class FileController extends Controller {
     const { depData = '{}', envName } = request.body
     const userName = 'admin'
     const cloneGit = await file.cloneGit()
-    if (cloneGit) {
+    if (!cloneGit) {
       const changeEnv = await file.changeEnv(envName, depData)
       const commitGit = await file.commitGit(userName, envName)
       if (!changeEnv && !commitGit) {
