@@ -39,6 +39,24 @@ class FileService extends Service {
     return fs.existsSync(path.join(FILEPATH, GITFILEPATH))
   }
 
+  async modifyProjectEnvs(env, infoObj) {
+    const {
+      config: { PROJECTENVSNAME },
+    } = this
+    const projectData = await this.readFile(PROJECTENVSNAME)
+    const tempEnvData = JSON.parse(projectData)
+    if (tempEnvData instanceof Array && infoObj instanceof Object) {
+      const index = tempEnvData.findIndex((item) => item.key === env)
+      tempEnvData[index] = {
+        ...tempEnvData[index],
+        ...infoObj,
+      }
+      return await this.writeFile(PROJECTENVSNAME, JSON.stringify(tempEnvData))
+    } else {
+      return '数据错误'
+    }
+  }
+
   async cloneGit() {
     const {
       config: { FILEPATH, GITPATH, GITFILEPATH },
@@ -76,7 +94,10 @@ class FileService extends Service {
           cwd: path.join(FILEPATH, GITFILEPATH),
           encoding: 'utf-8',
         })
-        return null
+        return await this.modifyProjectEnvs(envName, {
+          updateBy: userName,
+          updateTime: Date.now(),
+        })
       }
     } catch (error) {
       console.log(error)
