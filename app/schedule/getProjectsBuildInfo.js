@@ -34,7 +34,7 @@ module.exports = {
             tempEnv.building = res?.data?.building ?? tempEnv.building
           }
           if (!tempEnv.building) {
-            nsp.emit('jenkinsFileDownLoad', tempEnv.key)
+            nsp.emit('jenkinsFileDownLoad', tempEnv.description)
           }
         }
         envData.push(tempEnv)
