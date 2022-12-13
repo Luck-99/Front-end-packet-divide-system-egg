@@ -236,7 +236,11 @@ class JenkinsController extends Controller {
           },
           dataType: 'json',
         })
-        this.success('停止成功', res.data)
+        if (!res.data) {
+          this.success('停止成功')
+        } else {
+          this.failed(res.data.message)
+        }
       } else {
         this.failed('crumb获取失败')
       }
