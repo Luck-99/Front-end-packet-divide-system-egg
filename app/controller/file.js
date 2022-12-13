@@ -1,6 +1,7 @@
 'use strict'
 
 const Controller = require('./base_controller')
+const path = require('path')
 
 class FileController extends Controller {
   async readFile() {
@@ -64,6 +65,22 @@ class FileController extends Controller {
       }
     } else {
       this.failed('git clone 失败', cloneGit)
+    }
+  }
+
+  async getEnvDeps() {
+    const {
+      ctx: { query },
+      service: { file },
+      config: { GITFILEPATH },
+    } = this
+    const { key } = query
+    const tempData = await file.readFile(path.join(GITFILEPATH, `${key}.json`))
+    if (tempData && typeof tempData === 'string') {
+      const tempEnv = JSON.parse(tempData)
+      this.success('获取配置成功', tempEnv.dependencies)
+    } else {
+      this.failed('获取配置失败')
     }
   }
 }
