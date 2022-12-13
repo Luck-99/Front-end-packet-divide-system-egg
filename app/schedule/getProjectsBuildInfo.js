@@ -33,8 +33,11 @@ module.exports = {
           if (res.code > 0) {
             tempEnv.building = res?.data?.building ?? tempEnv.building
           }
-          if (!tempEnv.building) {
-            nsp.emit('jenkinsFileDownLoad', tempEnv.description)
+          if (!tempEnv.building && res.result === 'SUCCESS') {
+            nsp.emit(
+              'jenkinsFileDownLoad',
+              `${tempEnv.description}${tempEnv.id}`
+            )
           }
         }
         envData.push(tempEnv)
