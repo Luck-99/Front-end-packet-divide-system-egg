@@ -35,5 +35,38 @@ class BaseController extends Controller {
   getMsg(obj) {
     return obj.msg
   }
+
+  async translateEnv(key) {
+    const {
+      config: { PROJECTENVSNAME },
+      service: { file },
+    } = this
+    const res = await file.readFile(PROJECTENVSNAME)
+    if (this.isSuccess(res)) {
+      const tempData = JSON.parse(this.getMsg(res))
+      const tempObj = tempData.find((item) => item.key === key)
+      return tempObj?.description ?? null
+    }
+  }
+
+  async recordActions(userName, envName, action) {
+    const {
+      config: { TASKACTIONLIST },
+      service: { file },
+    } = this
+    const taskListRes = await file.readFile(TASKACTIONLIST)
+    if (this.isSuccess(taskListRes)) {
+      const tempList = JSON.parse(this.getMsg(taskListRes))
+      const obj = {
+        id: tempList.length,
+        userName,
+        envName,
+        action,
+        time: Date.now(),
+      }
+      tempList.unshift(obj)
+      file.writeFile(TASKACTIONLIST, tempList)
+    }
+  }
 }
 module.exports = BaseController
