@@ -46,6 +46,7 @@ module.exports = (appInfo) => {
     PROJECTENVSNAME: 'projectEnvs.json',
     GITPATH: 'https://git.apexsoft.com.cn/kangchongguang/portal-mix.git',
     GITFILEPATH: 'portal-mix',
+    TASKACTIONLIST: 'taskActionList.json',
   }
   // add your user config here
   const userConfig = {
