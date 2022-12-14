@@ -31,9 +31,9 @@ module.exports = {
         if (building && id) {
           const res = await jenkins.getBuildInfo(JENKINSJOBNAME, id)
           if (res.code > 0) {
-            tempEnv.building = res?.data?.building ?? tempEnv.building
+            tempEnv.building = res?.msg?.building ?? tempEnv.building
           }
-          if (!tempEnv.building && res.result === 'SUCCESS') {
+          if (!tempEnv.building && res.msg.result === 'SUCCESS') {
             nsp.emit(
               'jenkinsFileDownLoad',
               `${tempEnv.description}${tempEnv.id}`
