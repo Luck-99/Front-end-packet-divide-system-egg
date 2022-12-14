@@ -27,10 +27,15 @@ class FileService extends BaseService {
       config: { FILEPATH },
     } = this
     try {
-      return fs.writeFileSync(path.join(FILEPATH, fileName), info)
+      if (typeof info === 'object') {
+        return this.success(
+          fs.writeFileSync(path.join(FILEPATH, fileName), JSON.stringify(info))
+        )
+      }
+      return this.success(fs.writeFileSync(path.join(FILEPATH, fileName), info))
     } catch (error) {
       console.log(error)
-      return error
+      return this.failed(error)
     }
   }
 
@@ -55,7 +60,7 @@ class FileService extends BaseService {
       }
       return await this.writeFile(PROJECTENVSNAME, JSON.stringify(tempEnvData))
     } else {
-      return '数据错误'
+      return this.failed('数据错误')
     }
   }
 
@@ -100,7 +105,7 @@ class FileService extends BaseService {
           updateBy: userName,
           updateTime: Date.now(),
         })
-        return this.success('成功')
+        return this.success('提交到git成功')
       }
     } catch (error) {
       console.log(error)
@@ -132,11 +137,8 @@ class FileService extends BaseService {
             ...devData,
           }
         }
-        const returnData = await this.writeFile(
-          envPath,
-          JSON.stringify(tempEnvData)
-        )
-        return this.success(undefined)
+        await this.writeFile(envPath, JSON.stringify(tempEnvData))
+        return this.success(null)
       }
     }
     return this.failed('地址不存在')
