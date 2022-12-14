@@ -19,8 +19,8 @@ module.exports = {
     } = app
     const nsp = app.io.of('/')
 
-    const data = await file.readFile(PROJECTENVSNAME)
-    const tempData = JSON.parse(data)
+    const dataRes = await file.readFile(PROJECTENVSNAME)
+    const tempData = dataRes.code > 0 ? JSON.parse(dataRes.msg) : []
     const envData = []
     const hasBuilding = tempData.findIndex((i) => i.building)
     if (hasBuilding > -1) {

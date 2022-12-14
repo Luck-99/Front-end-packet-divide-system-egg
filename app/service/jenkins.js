@@ -1,8 +1,8 @@
 'use strict'
 
-const Service = require('egg').Service
+const BaseService = require('./base_service')
 
-class JenkinsService extends Service {
+class JenkinsService extends BaseService {
   async getCrumb() {
     try {
       const { ctx, config } = this
@@ -34,10 +34,10 @@ class JenkinsService extends Service {
           dataType: 'json',
         }
       )
-      return { code: 1, data }
+      return this.success(data)
     } catch (err) {
       console.log(err)
-      return { code: -1, err }
+      return this.failed(err)
     }
   }
 }

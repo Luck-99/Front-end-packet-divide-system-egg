@@ -1,22 +1,24 @@
 'use strict'
 
-const Service = require('egg').Service
+const BaseService = require('./base_service')
 
 const fs = require('fs')
 const path = require('path')
 
 const { execSync } = require('child_process')
 
-class FileService extends Service {
+class FileService extends BaseService {
   async readFile(fileName) {
     const {
       config: { FILEPATH },
     } = this
     try {
-      return fs.readFileSync(path.join(FILEPATH, fileName), 'utf8')
+      return this.success(
+        fs.readFileSync(path.join(FILEPATH, fileName), 'utf8')
+      )
     } catch (error) {
       console.log(error)
-      return null
+      return this.failed(error)
     }
   }
 
@@ -43,8 +45,8 @@ class FileService extends Service {
     const {
       config: { PROJECTENVSNAME },
     } = this
-    const projectData = await this.readFile(PROJECTENVSNAME)
-    const tempEnvData = JSON.parse(projectData)
+    const projectRes = await this.readFile(PROJECTENVSNAME)
+    const tempEnvData = projectRes.code > 0 ? JSON.parse(projectRes.msg) : []
     if (tempEnvData instanceof Array && infoObj instanceof Object) {
       const index = tempEnvData.findIndex((item) => item.key === env)
       tempEnvData[index] = {
@@ -73,10 +75,10 @@ class FileService extends Service {
           encoding: 'utf-8',
         })
       }
-      return null
+      return this.success()
     } catch (error) {
       console.log(error)
-      return error.stdout
+      return this.failed(error.stdout)
     }
   }
 
@@ -94,14 +96,15 @@ class FileService extends Service {
           cwd: path.join(FILEPATH, GITFILEPATH),
           encoding: 'utf-8',
         })
-        return await this.modifyProjectEnvs(envName, {
+        this.modifyProjectEnvs(envName, {
           updateBy: userName,
           updateTime: Date.now(),
         })
+        return this.success('成功')
       }
     } catch (error) {
       console.log(error)
-      return error.stdout
+      return this.failed(error.stdout)
     }
   }
 
@@ -112,9 +115,9 @@ class FileService extends Service {
     const envPath = path.join(GITFILEPATH, `${envName}.json`)
     const existPath = fs.existsSync(path.join(FILEPATH, envPath))
     if (existPath) {
-      const envFileData = await this.readFile(envPath)
-      if (envFileData) {
-        const tempEnvData = JSON.parse(envFileData)
+      const envFileRes = await this.readFile(envPath)
+      if (envFileRes.code > 0) {
+        const tempEnvData = JSON.parse(envFileRes.msg)
         if (!tempEnvData.dependencies) {
           tempEnvData.dependencies = {}
         }
@@ -129,10 +132,14 @@ class FileService extends Service {
             ...devData,
           }
         }
-        return await this.writeFile(envPath, JSON.stringify(tempEnvData))
+        const returnData = await this.writeFile(
+          envPath,
+          JSON.stringify(tempEnvData)
+        )
+        return this.success(undefined)
       }
     }
-    return '地址不存在'
+    return this.failed('地址不存在')
   }
 }
 

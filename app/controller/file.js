@@ -39,8 +39,8 @@ class FileController extends Controller {
       config: { PROJECTENVSNAME },
     } = this
     const data = await file.readFile(PROJECTENVSNAME)
-    if (data) {
-      this.success('获取项目成功', JSON.parse(data))
+    if (this.isSuccess(data)) {
+      this.success('获取项目成功', JSON.parse(this.getMsg(data)))
     } else {
       this.failed('获取项目失败', {})
     }
@@ -55,13 +55,16 @@ class FileController extends Controller {
     const { depData = '{}', envName } = request.body
     const userName = 'admin'
     const cloneGit = await file.cloneGit()
-    if (!cloneGit) {
+    if (this.isSuccess(cloneGit)) {
       const changeEnv = await file.changeEnv(envName, depData)
       const commitGit = await file.commitGit(userName, envName)
-      if (!changeEnv && !commitGit) {
+      if (this.isSuccess(changeEnv) && this.isSuccess(commitGit)) {
         this.success('更改配置成功')
       } else {
-        this.failed('更改配置失败', changeEnv ? changeEnv : commitGit)
+        this.failed(
+          '更改配置失败',
+          this.getMsg(changeEnv) ?? this.getMsg(commitGit)
+        )
       }
     } else {
       this.failed('git clone 失败', cloneGit)
@@ -76,8 +79,8 @@ class FileController extends Controller {
     } = this
     const { key } = query
     const tempData = await file.readFile(path.join(GITFILEPATH, `${key}.json`))
-    if (tempData && typeof tempData === 'string') {
-      const tempEnv = JSON.parse(tempData)
+    if (this.isSuccess(tempData) && typeof this.getMsg(tempData) === 'string') {
+      const tempEnv = JSON.parse(this.getMsg(tempData))
       this.success('获取配置成功', tempEnv.dependencies)
     } else {
       this.failed('获取配置失败')

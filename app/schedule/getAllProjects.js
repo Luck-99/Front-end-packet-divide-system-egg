@@ -17,8 +17,10 @@ module.exports = {
     const {
       config: { PROJECTENVSNAME },
     } = app
-    const data = await file.readFile(PROJECTENVSNAME)
-    const nsp = app.io.of('/')
-    nsp.emit('jenkinsAllJobs', data)
+    const dataRes = await file.readFile(PROJECTENVSNAME)
+    if (dataRes.code > 0) {
+      const nsp = app.io.of('/')
+      nsp.emit('jenkinsAllJobs', dataRes.msg)
+    }
   },
 }
