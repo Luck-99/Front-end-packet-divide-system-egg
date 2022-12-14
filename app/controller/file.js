@@ -59,11 +59,11 @@ class FileController extends Controller {
       const changeEnv = await file.changeEnv(envName, depData)
       const commitGit = await file.commitGit(userName, envName)
       if (this.isSuccess(changeEnv) && this.isSuccess(commitGit)) {
-        this.success('更改配置成功')
+        return this.success('更改配置成功')
       } else {
-        this.failed(
-          '更改配置失败',
-          this.getMsg(changeEnv) ?? this.getMsg(commitGit)
+        return this.failed(
+          this.getMsg(changeEnv) ?? this.getMsg(commitGit),
+          '更改配置失败'
         )
       }
     } else {

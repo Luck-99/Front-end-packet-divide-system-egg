@@ -77,13 +77,18 @@ class JenkinsController extends Controller {
           }
         )
         if (!data) {
-          const lastBuildId = await this.getLastBuildInfo()
+          const { nextBuildNumber } = await this.getJobInfo()
           file.modifyProjectEnvs(projectName, {
             builtBy: 'admin',
             lastBuildTime: Date.now(),
             building: true,
-            id: lastBuildId === 0 ? 0 : lastBuildId + 1,
+            id: nextBuildNumber,
           })
+          this.recordActions(
+            'admin',
+            await this.translateEnv(projectName),
+            '构建'
+          )
           this.success('构建成功', data)
         } else {
           this.failed('构建失败', data.message)
@@ -106,10 +111,10 @@ class JenkinsController extends Controller {
     } = this
     const { name = JENKINSJOBNAME, id } = ctx.query
     const res = await jenkins.getBuildInfo(name, id)
-    if (res.code > 0) {
-      this.success('获取成功', res.data)
+    if (this.isSuccess(res)) {
+      this.success('获取成功', this.getMsg(res))
     } else {
-      this.failed('获取失败', res.error)
+      this.failed('获取失败', this.getMsg(res))
     }
   }
 
@@ -131,11 +136,9 @@ class JenkinsController extends Controller {
         }
       )
       this.success('获取成功', data)
-      return data.number
     } catch (error) {
       console.log(error)
       this.failed('获取失败')
-      return 0
     }
   }
 
@@ -187,6 +190,7 @@ class JenkinsController extends Controller {
         dataType: 'json',
       })
       this.success('获取成功', res?.data)
+      return res.data
     } catch (error) {
       this.failed('获取失败')
       console.log(error)
@@ -237,6 +241,7 @@ class JenkinsController extends Controller {
           dataType: 'json',
         })
         if (!res.data) {
+          // this.recordActions('admin',,'停止构建')
           this.success('停止成功')
         } else {
           this.failed(res.data.message)
