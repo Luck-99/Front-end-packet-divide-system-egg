@@ -20,7 +20,7 @@ module.exports = {
     const dataRes = await file.readFile(TASKACTIONLIST)
     if (dataRes.code > 0) {
       const nsp = io.of('/')
-      nsp.emit('actionLists', dataRes.msg)
+      nsp.emit('actionRecordLists', dataRes.msg)
     }
   },
 }

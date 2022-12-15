@@ -92,7 +92,7 @@ class FileController extends Controller {
     }
   }
 
-  async getActionList() {
+  async getActionRecordList() {
     const {
       service: { file },
       config: { TASKACTIONLIST },
