@@ -61,7 +61,7 @@ class FileService extends BaseService {
         ...tempEnvData[index],
         ...infoObj,
       }
-      return await this.writeFile(PROJECTENVSNAME, JSON.stringify(tempEnvData))
+      return await this.writeFile(PROJECTENVSNAME, tempEnvData)
     } else {
       return this.failed('数据错误')
     }
@@ -140,7 +140,7 @@ class FileService extends BaseService {
             ...devData,
           }
         }
-        await this.writeFile(envPath, JSON.stringify(tempEnvData))
+        await this.writeFile(envPath, tempEnvData)
         return this.success(null)
       }
     }

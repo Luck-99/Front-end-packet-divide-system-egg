@@ -42,7 +42,7 @@ module.exports = {
         }
         envData.push(tempEnv)
       }
-      file.writeFile(PROJECTENVSNAME, JSON.stringify(envData))
+      file.writeFile(PROJECTENVSNAME, envData)
       nsp.emit('jenkinsAllJobs', JSON.stringify(envData))
     }
   },
