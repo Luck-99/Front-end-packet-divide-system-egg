@@ -62,6 +62,7 @@ class BaseController extends Controller {
         userName,
         envName,
         action,
+        actionDec: '进行了',
         time: Date.now(),
       }
       tempList.unshift(obj)
