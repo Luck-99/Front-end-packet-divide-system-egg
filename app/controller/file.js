@@ -59,6 +59,11 @@ class FileController extends Controller {
       const changeEnv = await file.changeEnv(envName, depData)
       const commitGit = await file.commitGit(userName, envName)
       if (this.isSuccess(changeEnv) && this.isSuccess(commitGit)) {
+        this.recordActions(
+          'admin',
+          await this.translateEnv(envName),
+          '配置更改'
+        )
         return this.success('更改配置成功')
       } else {
         return this.failed(
@@ -84,6 +89,19 @@ class FileController extends Controller {
       this.success('获取配置成功', tempEnv.dependencies)
     } else {
       this.failed('获取配置失败')
+    }
+  }
+
+  async getActionList() {
+    const {
+      service: { file },
+      config: { TASKACTIONLIST },
+    } = this
+    const dataRes = await file.readFile(TASKACTIONLIST)
+    if (this.isSuccess(dataRes)) {
+      this.success('获取成功', JSON.parse(this.getMsg(dataRes)))
+    } else {
+      this.failed('获取失败')
     }
   }
 }
