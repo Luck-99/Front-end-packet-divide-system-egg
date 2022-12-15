@@ -29,7 +29,10 @@ class FileService extends BaseService {
     try {
       if (typeof info === 'object') {
         return this.success(
-          fs.writeFileSync(path.join(FILEPATH, fileName), JSON.stringify(info))
+          fs.writeFileSync(
+            path.join(FILEPATH, fileName),
+            JSON.stringify(info, null, 2)
+          )
         )
       }
       return this.success(fs.writeFileSync(path.join(FILEPATH, fileName), info))
