@@ -43,7 +43,7 @@ module.exports = (appInfo) => {
 
   const fileConfig = {
     FILEPATH: path.join(__dirname, '../', 'app/public/files'),
-    PROJECTENVSNAME: 'projectEnvs.json',
+    PROJECTENVSNAME: 'portal-mix/projectEnvs.json',
     GITPATH: 'https://git.apexsoft.com.cn/kangchongguang/portal-mix.git',
     GITFILEPATH: 'portal-mix',
     TASKACTIONLIST: 'taskActionList.json',
