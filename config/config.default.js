@@ -17,7 +17,7 @@ module.exports = (appInfo) => {
   config.keys = appInfo.name + '_1650721011656_8991'
 
   // add your middleware config here
-  config.middleware = ['counter', 'errorHandler']
+  config.middleware = ['jwtHandler', 'errorHandler']
 
   config.errorHandler = {
     match: '/',
@@ -47,6 +47,7 @@ module.exports = (appInfo) => {
     GITPATH: 'https://git.apexsoft.com.cn/kangchongguang/portal-mix.git',
     GITFILEPATH: 'portal-mix',
     TASKACTIONLIST: 'taskActionList.json',
+    USERCONFIGFILE: 'user.json',
   }
   // add your user config here
   const userConfig = {
@@ -93,8 +94,11 @@ module.exports = (appInfo) => {
   //     database: 'mydatabase',
   //   },
   // };
-  config.jwt = {
+  config.jwtHandler = {
+    enable: true,
     secret: 'APEX-Front-end-packet-divide-system',
+    ignore: ['/registered', '/login'], // 不需要认证请求
+    expiresIn: '3d',
   }
 
   return {
