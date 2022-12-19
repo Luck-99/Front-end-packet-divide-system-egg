@@ -87,7 +87,8 @@ class JenkinsController extends Controller {
           this.recordActions(
             'admin',
             await this.translateEnv(projectName),
-            '构建'
+            '构建',
+            nextBuildNumber
           )
           this.success('构建成功', data)
         } else {
@@ -226,7 +227,7 @@ class JenkinsController extends Controller {
       config: { JENKINSURL, JENKINSJOBNAME },
       service: { jenkins },
     } = this
-    const { jobName = JENKINSJOBNAME, id } = ctx.query
+    const { jobName = JENKINSJOBNAME, id, projectName } = ctx.query
     try {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
       if (crumb) {
@@ -241,7 +242,12 @@ class JenkinsController extends Controller {
           dataType: 'json',
         })
         if (!res.data) {
-          // this.recordActions('admin',,'停止构建')
+          this.recordActions(
+            'admin',
+            await this.translateEnv(projectName),
+            '停止构建',
+            id
+          )
           this.success('停止成功')
         } else {
           this.failed(res.data.message)

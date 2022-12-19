@@ -15,12 +15,24 @@ module.exports = {
       service: { file, jenkins },
     } = ctx
     const {
-      config: { PROJECTENVSNAME, JENKINSJOBNAME },
+      config: { TASKACTIONLIST, PROJECTENVSNAME, JENKINSJOBNAME },
     } = app
     const nsp = app.io.of('/')
 
+    const taskListRes = await file.readFile(TASKACTIONLIST)
+    const tempList = taskListRes.code > 0 ? JSON.parse(taskListRes.msg) : []
     const dataRes = await file.readFile(PROJECTENVSNAME)
     const tempData = dataRes.code > 0 ? JSON.parse(dataRes.msg) : []
+    const obj = {
+      id: tempList.length,
+      userName: 'admin',
+      envName: null,
+      action: '成功',
+      actionDec: '构建结果',
+      buildId: null,
+      time: Date.now(),
+    }
+
     const envData = []
     const hasBuilding = tempData.findIndex((i) => i.building)
     if (hasBuilding > -1) {
@@ -33,11 +45,32 @@ module.exports = {
           if (res.code > 0) {
             tempEnv.building = res?.msg?.building ?? tempEnv.building
           }
-          if (!tempEnv.building && res.msg.result === 'SUCCESS') {
-            nsp.emit(
-              'jenkinsFileDownLoad',
-              `${tempEnv.description}${tempEnv.id}`
-            )
+          if (!tempEnv.building) {
+            if (res.msg.result === 'SUCCESS') {
+              nsp.emit(
+                'jenkinsFileDownLoad',
+                `${tempEnv.description}${tempEnv.id}`
+              )
+              tempList.unshift({
+                ...obj,
+                ...{
+                  envName: tempEnv.description,
+                  buildId: res?.msg?.id,
+                  duration: res?.msg.duration,
+                },
+              })
+            } else {
+              tempList.unshift({
+                ...obj,
+                ...{
+                  envName: tempEnv.description,
+                  action: '失败',
+                  buildId: res?.msg?.id,
+                  duration: res?.msg.duration,
+                },
+              })
+            }
+            file.writeFile(TASKACTIONLIST, tempList)
           }
         }
         envData.push(tempEnv)

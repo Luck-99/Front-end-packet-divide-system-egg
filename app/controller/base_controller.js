@@ -49,7 +49,7 @@ class BaseController extends Controller {
     }
   }
 
-  async recordActions(userName, envName, action) {
+  async recordActions(userName, envName, action, buildId = null) {
     const {
       config: { TASKACTIONLIST },
       service: { file },
@@ -61,6 +61,7 @@ class BaseController extends Controller {
         id: tempList.length,
         userName,
         envName,
+        buildId,
         action,
         actionDec: '进行了',
         time: Date.now(),
