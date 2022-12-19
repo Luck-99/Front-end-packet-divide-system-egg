@@ -42,11 +42,11 @@ class FileService extends BaseService {
     }
   }
 
-  async existGitPath() {
+  async existPath(filePath) {
     const {
-      config: { FILEPATH, GITFILEPATH },
+      config: { FILEPATH },
     } = this
-    return fs.existsSync(path.join(FILEPATH, GITFILEPATH))
+    return fs.existsSync(path.join(FILEPATH, filePath))
   }
 
   async modifyProjectEnvs(env, infoObj) {
@@ -72,7 +72,7 @@ class FileService extends BaseService {
       config: { FILEPATH, GITPATH, GITFILEPATH },
     } = this
     try {
-      if (await this.existGitPath()) {
+      if (await this.existPath(GITFILEPATH)) {
         execSync('git pull', {
           cwd: path.join(FILEPATH, GITFILEPATH),
           encoding: 'utf-8',
@@ -95,7 +95,7 @@ class FileService extends BaseService {
       config: { FILEPATH, GITFILEPATH, GITPATH },
     } = this
     try {
-      if (await this.existGitPath()) {
+      if (await this.existPath(GITFILEPATH)) {
         execSync(`git commit -am "refactor:${userName} 更新了 ${envName}"`, {
           cwd: path.join(FILEPATH, GITFILEPATH),
           encoding: 'utf-8',
