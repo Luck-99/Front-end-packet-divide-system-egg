@@ -10,6 +10,14 @@ class BaseService extends Service {
   failed(msg = '错误') {
     return { code: -1, msg }
   }
+
+  isSuccess(obj) {
+    return obj.code > 0
+  }
+
+  getMsg(obj) {
+    return obj.msg
+  }
 }
 
 module.exports = BaseService
