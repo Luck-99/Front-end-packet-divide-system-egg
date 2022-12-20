@@ -1,7 +1,7 @@
 {
-  "name": "egg",
+  "name": "front-end-packet-divide-system",
   "version": "1.0.0",
-  "description": "学习egg",
+  "description": "前端分组分治系统",
   "private": true,
   "egg": {
     "declarations": true
@@ -9,7 +9,6 @@
   "dependencies": {
     "egg": "^2.15.1",
     "egg-jwt": "^3.1.7",
-    "egg-mysql": "^3.1.1",
     "egg-scripts": "^2.11.0",
     "egg-socket.io": "^4.1.6"
   },
