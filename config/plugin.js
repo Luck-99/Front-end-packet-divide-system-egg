@@ -6,10 +6,6 @@ module.exports = {
   // static: {
   //   enable: true,
   // }
-  mysql: {
-    enable: false,
-    package: 'egg-mysql',
-  },
   jwt: {
     enable: true,
     package: 'egg-jwt',
