@@ -11,8 +11,14 @@ class UserService extends BaseService {
     if (!(await file.existPath(USERCONFIGFILE))) {
       const user = [
         {
+          id: 0,
           username: 'admin',
           password: 'admin',
+          name: '管理员',
+          avatar:
+            'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+          creatTime: Date.now(),
+          updateTime: Date.now(),
         },
       ]
       file.writeFile(USERCONFIGFILE, user)
@@ -28,7 +34,7 @@ class UserService extends BaseService {
         config: { USERCONFIGFILE },
       } = this
       const { username, password } = params
-      this.initUser()
+      await this.initUser()
       const tempUsers = await file.readFile(USERCONFIGFILE)
       const users = this.isSuccess(tempUsers)
         ? JSON.parse(this.getMsg(tempUsers))
