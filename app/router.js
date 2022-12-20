@@ -9,6 +9,7 @@ module.exports = (app) => {
   router.get('/', controller.home.index)
 
   router.post('/login', controller.user.login)
+  router.post('/logout', controller.user.logout)
 
   router.get('/jenkins/getAllJobs', controller.jenkins.getAllJobs)
   router.get('/jenkins/buildJob', controller.jenkins.buildJob)

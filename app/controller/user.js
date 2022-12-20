@@ -21,5 +21,15 @@ class UserController extends Controller {
       this.failed('登录失败')
     }
   }
+
+  async logout() {
+    const { ctx } = this
+    if (ctx.session['front-end-packet-system']) {
+      ctx.session['front-end-packet-system'] = null
+      this.success('注销成功')
+    } else {
+      this.failed('未登录')
+    }
+  }
 }
 module.exports = UserController
