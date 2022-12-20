@@ -64,9 +64,10 @@ module.exports = (appInfo) => {
     },
   }
   config.session = {
-    key: 'my_session',
+    key: 'front-end-packet-system',
     httpOnly: true,
-    maxAge: 1000 * 60,
+    encrypt: true,
+    maxAge: 1000 * 60 * 60 * 24 * 3,
     renew: true, // 自动刷新过期时间
   }
 
@@ -83,22 +84,12 @@ module.exports = (appInfo) => {
       },
     },
   }
-  // config.mysql = {
-  //   app: true, // 是否挂在到app上
-  //   agent: false, // 是否挂到代理上
-  //   client: {
-  //     host: '127.0.0.1', // 数据库地址
-  //     port: '3306', // 端口
-  //     user: 'root',
-  //     password: '520+zzl.',
-  //     database: 'mydatabase',
-  //   },
-  // };
+
   config.jwtHandler = {
     enable: true,
     secret: 'APEX-Front-end-packet-divide-system',
     ignore: ['/registered', '/login'], // 不需要认证请求
-    expiresIn: '3d',
+    expiresIn: '3d', //3天过期
   }
 
   return {

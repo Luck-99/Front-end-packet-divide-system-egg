@@ -2,13 +2,11 @@
 
 module.exports = (options) => {
   return async function jwtHandler(ctx, next) {
-    const token = ctx.request.header.authorization
+    const token = ctx.session['front-end-packet-system']
     if (token) {
       try {
-        // 解码token
         const decode = ctx.app.jwt.verify(token, options.secret)
         await next()
-        console.log(decode)
       } catch (error) {
         ctx.status = 401
         ctx.body = {
@@ -21,7 +19,7 @@ module.exports = (options) => {
       ctx.status = 401
       ctx.body = {
         code: -1,
-        msg: '没有token',
+        msg: '没有正确的token',
       }
       return
     }
