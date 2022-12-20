@@ -1,6 +1,6 @@
 # egg
 
-学习egg
+前端分组分治系统（后端）
 
 ## QuickStart
 
@@ -28,6 +28,5 @@ $ npm stop
 - Use `npm run lint` to check code style.
 - Use `npm test` to run unit test.
 - Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
-
 
 [egg]: https://eggjs.org
