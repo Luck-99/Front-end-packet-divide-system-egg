@@ -8,15 +8,8 @@ module.exports = (app) => {
 
   router.get('/', controller.home.index)
 
-  router.get('/xz', controller.home.xz)
-  router.get('/testGetUser', controller.home.testGetUser)
-
-  router.get('/addUser', controller.userManage.addUser)
-  router.get('/delUser', controller.userManage.delUser)
-  router.get('/updateUser', controller.userManage.updateUser)
-  router.get('/getUsers', controller.userManage.getUsers)
-
   router.post('/login', controller.user.login)
+
   router.get('/jenkins/getAllJobs', controller.jenkins.getAllJobs)
   router.get('/jenkins/buildJob', controller.jenkins.buildJob)
   router.get(
