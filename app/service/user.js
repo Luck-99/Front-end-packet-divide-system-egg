@@ -80,6 +80,27 @@ class UserService extends BaseService {
       return this.failed(error.message)
     }
   }
+
+  async getUserInfo(username) {
+    const {
+      service: { file },
+      config: { USERCONFIGFILE },
+    } = this
+    try {
+      const tempUser = await file.readFile(USERCONFIGFILE)
+      const user = this.isSuccess(tempUser)
+        ? JSON.parse(this.getMsg(tempUser))
+        : []
+      const userInfo = user.find((user) => user.username === username)
+      if (userInfo) {
+        const { username, avaUrl, name } = userInfo
+        return this.success({ username, avaUrl, name })
+      }
+      return this.failed('未找到此用户')
+    } catch (error) {
+      return this.failed(error.message)
+    }
+  }
 }
 
 module.exports = UserService

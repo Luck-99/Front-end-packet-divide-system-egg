@@ -12,10 +12,11 @@ class UserController extends Controller {
       } = this
       const { username, password } = ctx.request.body
       const res = await user.login({ username, password })
-      if (this.isSuccess(res)) {
-        this.success(this.getMsg(res), { username })
+      const userInfo = await user.getUserInfo(username)
+      if (this.isSuccess(res) && this.isSuccess(userInfo)) {
+        this.success(this.getMsg(res), this.getMsg(userInfo))
       } else {
-        this.failed(this.getMsg(res))
+        this.failed(this.getMsg(res) + this.getMsg(userInfo))
       }
     } catch (error) {
       this.failed('登录失败')
