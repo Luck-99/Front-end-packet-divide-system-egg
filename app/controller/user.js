@@ -31,5 +31,18 @@ class UserController extends Controller {
       this.failed('未登录')
     }
   }
+
+  async getMembers() {
+    const {
+      service: { user },
+    } = this
+    const res = await user.getMembers()
+    const msg = this.getMsg(res)
+    if (this.isSuccess(res)) {
+      this.success('获取成员信息成功', msg)
+    } else {
+      this.failed(msg)
+    }
+  }
 }
 module.exports = UserController

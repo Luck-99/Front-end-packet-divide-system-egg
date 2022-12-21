@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "username": "admin",
+    "password": "admin",
+    "name": "管理员",
+    "avaUrl": "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+    "creatTime": 1671585493943,
+    "updateTime": 1671585493943
+  },
+  {
+    "id": 1,
+    "username": "zhangzelin",
+    "password": "zhangzelin",
+    "name": "张泽林",
+    "avaUrl": "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+    "creatTime": 1671585493943,
+    "updateTime": 1671585493943
+  },
+  {
+    "id": 2,
+    "username": "xufeng",
+    "password": "xufeng",
+    "name": "许锋",
+    "avaUrl": "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+    "creatTime": 1671585493943,
+    "updateTime": 1671585493943
+  } ,
+  {
+    "id": 3,
+    "username": "xiaohongxiang",
+    "password": "xiaohongxiang",
+    "name": "肖鸿祥",
+    "avaUrl": "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+    "creatTime": 1671585493943,
+    "updateTime": 1671585493943
+  } ,
+  {
+    "id": 4,
+    "username": "zhouqiwei",
+    "password": "zhouqiwei",
+    "name": "周琦伟",
+    "avaUrl": "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+    "creatTime": 1671585493943,
+    "updateTime": 1671585493943
+  } 
+]

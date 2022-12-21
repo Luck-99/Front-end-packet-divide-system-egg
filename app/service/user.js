@@ -15,7 +15,7 @@ class UserService extends BaseService {
           username: 'admin',
           password: 'admin',
           name: '管理员',
-          avatar:
+          avaUrl:
             'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
           creatTime: Date.now(),
           updateTime: Date.now(),
@@ -54,7 +54,30 @@ class UserService extends BaseService {
         return this.failed('账号或密码错误')
       }
     } catch (error) {
-      return this.failed(error)
+      return this.failed(error.message)
+    }
+  }
+
+  async getMembers() {
+    const {
+      service: { file },
+      config: { USERCONFIGFILE },
+    } = this
+    try {
+      const tempUser = await file.readFile(USERCONFIGFILE)
+      const user = this.isSuccess(tempUser)
+        ? JSON.parse(this.getMsg(tempUser))
+        : []
+      const tempData = user.map((item) => {
+        return {
+          id: item.id,
+          name: item.name,
+          avaUrl: item.avaUrl,
+        }
+      })
+      return this.success(tempData)
+    } catch (error) {
+      return this.failed(error.message)
     }
   }
 }
