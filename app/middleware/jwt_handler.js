@@ -5,7 +5,7 @@ module.exports = (options) => {
     const token = ctx.session['front-end-packet-system']
     if (token) {
       try {
-        const decode = ctx.app.jwt.verify(token, options.secret)
+        ctx.app.jwt.verify(token, options.secret)
         await next()
       } catch (error) {
         ctx.status = 401
