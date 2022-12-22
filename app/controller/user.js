@@ -12,11 +12,10 @@ class UserController extends Controller {
       } = this
       const { username, password } = ctx.request.body
       const res = await user.login({ username, password })
-      const userInfo = await user.getUserInfo(username)
-      if (this.isSuccess(res) && this.isSuccess(userInfo)) {
-        this.success(this.getMsg(res), this.getMsg(userInfo))
+      if (this.isSuccess(res)) {
+        this.success(this.getMsg(res))
       } else {
-        this.failed(this.getMsg(res) + this.getMsg(userInfo))
+        this.failed(this.getMsg(res))
       }
     } catch (error) {
       this.failed('登录失败')
@@ -43,6 +42,27 @@ class UserController extends Controller {
       this.success('获取成员信息成功', msg)
     } else {
       this.failed(msg)
+    }
+  }
+
+  async getUserInfo() {
+    try {
+      const {
+        ctx,
+        app,
+        service: { user },
+      } = this
+      const token = ctx.session['front-end-packet-system']
+      const decodeToken = app.jwt.decode(token)
+      const { username } = decodeToken
+      const userInfo = await user.getUserInfo(username)
+      if (this.isSuccess(userInfo)) {
+        this.success('获取用户信息成功', this.getMsg(userInfo))
+      } else {
+        this.failed(this.getMsg(userInfo))
+      }
+    } catch (error) {
+      this.failed(this.getMsg(error.message))
     }
   }
 }
