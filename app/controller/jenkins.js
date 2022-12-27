@@ -64,7 +64,7 @@ class JenkinsController extends Controller {
       } = this
       const { name = JENKINSJOBNAME, projectName } = ctx.query
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
-
+      const userName = await this.getCurrentUserName()
       if (crumb) {
         const { data } = await ctx.curl(
           `${JENKINSURL}/job/${name}/buildWithParameters?projectName=${projectName}`,
@@ -79,13 +79,13 @@ class JenkinsController extends Controller {
         if (!data) {
           const { nextBuildNumber } = await this.getJobInfo()
           file.modifyProjectEnvs(projectName, {
-            builtBy: 'admin',
+            builtBy: userName,
             lastBuildTime: Date.now(),
             building: true,
             id: nextBuildNumber,
           })
           this.recordActions(
-            'admin',
+            userName,
             await this.translateEnv(projectName),
             '构建',
             nextBuildNumber
@@ -228,6 +228,7 @@ class JenkinsController extends Controller {
       service: { jenkins },
     } = this
     const { jobName = JENKINSJOBNAME, id, projectName } = ctx.query
+    const name = await this.getCurrentUserName()
     try {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
       if (crumb) {
@@ -243,7 +244,7 @@ class JenkinsController extends Controller {
         })
         if (!res.data) {
           this.recordActions(
-            'admin',
+            name,
             await this.translateEnv(projectName),
             '停止构建',
             id
