@@ -49,11 +49,18 @@ module.exports = (appInfo) => {
     TASKACTIONLIST: 'taskActionList.json',
     USERCONFIGFILE: 'user.json',
   }
+
+  const gitlabConfig = {
+    GITLABAPI: 'https://git.apexsoft.com.cn/api/v4',
+    GITLABTOKEN: 'glpat-bpGjQxxfJtZsouzawzNJ',
+  }
+
   // add your user config here
   const userConfig = {
     JENKINSJOBNAME: 'product-system-product-management',
     JENKINSURL: `${protocol}://${name}:${token}@${domain}:${port}`,
     VERDACCIOURL: 'http://192.168.183.123:4873/-/verdaccio',
+    ...gitlabConfig,
     ...fileConfig,
   }
 
