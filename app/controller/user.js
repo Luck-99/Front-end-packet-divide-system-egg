@@ -62,7 +62,7 @@ class UserController extends Controller {
         this.failed(this.getMsg(userInfo))
       }
     } catch (error) {
-      this.failed(this.getMsg(error.message))
+      this.failed(error.message)
     }
   }
 }
