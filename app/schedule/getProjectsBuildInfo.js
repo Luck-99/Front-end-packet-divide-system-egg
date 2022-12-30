@@ -19,20 +19,8 @@ module.exports = {
     } = app
     const nsp = app.io.of('/')
 
-    const taskListRes = await file.readFile(TASKACTIONLIST)
-    const tempList = taskListRes.code > 0 ? JSON.parse(taskListRes.msg) : []
     const dataRes = await file.readFile(PROJECTENVSNAME)
     const tempData = dataRes.code > 0 ? JSON.parse(dataRes.msg) : []
-    const obj = {
-      id: tempList.length,
-      userName: 'admin',
-      envName: null,
-      action: '成功',
-      actionDec: '构建结果',
-      buildId: null,
-      time: Date.now(),
-    }
-
     const envData = []
     const hasBuilding = tempData.findIndex((i) => i.building)
     if (hasBuilding > -1) {
@@ -46,11 +34,23 @@ module.exports = {
             tempEnv.building = res?.msg?.building ?? tempEnv.building
           }
           if (!tempEnv.building) {
+            const taskListRes = await file.readFile(TASKACTIONLIST)
+            const tempList =
+              taskListRes.code > 0 ? JSON.parse(taskListRes.msg) : []
+            const obj = {
+              id: tempList.length,
+              userName: 'admin',
+              envName: null,
+              action: '成功',
+              actionDec: '构建结果',
+              buildId: null,
+              time: Date.now(),
+            }
             if (res.msg.result === 'SUCCESS') {
-              nsp.emit(
-                'jenkinsFileDownLoad',
-                `${tempEnv.description}${tempEnv.id}`
-              )
+              nsp.emit('jenkinsFileDownLoad', {
+                envName: tempEnv.description,
+                id: tempEnv.id,
+              })
               tempList.unshift({
                 ...obj,
                 ...{
