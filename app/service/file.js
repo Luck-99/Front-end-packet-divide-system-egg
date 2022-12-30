@@ -130,15 +130,9 @@ class FileService extends BaseService {
           tempEnvData.dependencies = {}
         }
         if (typeof devData === 'string') {
-          tempEnvData.dependencies = {
-            ...tempEnvData.dependencies,
-            ...JSON.parse(devData),
-          }
+          tempEnvData.dependencies = JSON.parse(devData)
         } else if (typeof devData === 'object') {
-          tempEnvData.dependencies = {
-            ...tempEnvData.dependencies,
-            ...devData,
-          }
+          tempEnvData.dependencies = devData
         }
         await this.writeFile(envPath, tempEnvData)
         return this.success(null)
