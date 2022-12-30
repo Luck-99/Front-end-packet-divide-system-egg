@@ -39,6 +39,23 @@ class VerdaccioController extends Controller {
       return
     }
   }
+
+  async getPackageReadme() {
+    const {
+      ctx,
+      config: { VERDACCIOURL },
+    } = this
+    const { name } = ctx.query
+    const res = await ctx.curl(`${VERDACCIOURL}/package/readme/${name}`, {
+      method: 'GET',
+      // dataType: 'json',
+    })
+    if (res.status === 200) {
+      this.success('获取成功', res.data)
+    } else {
+      this.failed(res?.data?.message)
+    }
+  }
 }
 
 module.exports = VerdaccioController

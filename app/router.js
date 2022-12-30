@@ -29,6 +29,7 @@ module.exports = (app) => {
 
   router.get('/verdaccio/getAllPackages', verdaccio.getAllPackages)
   router.get('/verdaccio/getPackageInfo', verdaccio.getPackageInfo)
+  router.get('/verdaccio/getPackageReadme', verdaccio.getPackageReadme)
 
   router.get('/file/readFile', file.readFile)
   router.post('/file/writeFile', file.writeFile)
