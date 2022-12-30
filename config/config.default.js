@@ -57,7 +57,7 @@ module.exports = (appInfo) => {
 
   // add your user config here
   const userConfig = {
-    JENKINSJOBNAME: 'product-system-product-management',
+    JENKINSJOBNAME: 'potal-mix',
     JENKINSURL: `${protocol}://${name}:${token}@${domain}:${port}`,
     VERDACCIOURL: 'http://192.168.183.123:4873/-/verdaccio',
     ...gitlabConfig,
