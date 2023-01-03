@@ -31,6 +31,41 @@ class GitlabService extends BaseService {
       return this.failed(error.message)
     }
   }
+
+  async getVersionCommits(packages) {
+    try {
+      const {
+        service: { verdaccio },
+      } = this
+      const requests = []
+      for (const item of packages) {
+        requests.push(await verdaccio.getPackageInfo(item))
+      }
+      const packageVersionCommit = {}
+      const res = await Promise.all(requests)
+        .then((res) => {
+          for (const pack of res) {
+            if (this.isSuccess(pack)) {
+              const data = this.getMsg(pack)
+              const { versions, _id } = data
+              const versionData = {}
+              for (const [version, packageData] of Object.entries(versions)) {
+                const { gitHead } = packageData
+                versionData[version] = gitHead
+              }
+              packageVersionCommit[_id] = versionData
+            }
+          }
+          return this.success(packageVersionCommit)
+        })
+        .catch((err) => {
+          return this.failed(err)
+        })
+      return res
+    } catch (error) {
+      return this.failed(error.message)
+    }
+  }
 }
 
 module.exports = GitlabService
