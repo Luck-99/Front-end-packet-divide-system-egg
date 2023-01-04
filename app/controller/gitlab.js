@@ -20,10 +20,10 @@ class GitlabController extends Controller {
 
   async getProjectCommits() {
     const {
-      ctx: { query },
+      ctx: { request },
       service: { gitlab },
     } = this
-    const { projectID, since, until } = query
+    const { projectID, since, until } = request.body
     const res = await gitlab.getProjectCommits(projectID, since, until)
     if (this.isSuccess(res)) {
       //需要用到message(title)、id、committed_date、author_name
