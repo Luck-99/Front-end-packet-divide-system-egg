@@ -17,6 +17,7 @@ class GitlabService extends BaseService {
         per_page: 10000,
       },
       dataType: 'json',
+      timeout: 1000 * 20,
     })
     if (res.status === 200) {
       const tempData = res?.data?.map((item) => {
@@ -51,8 +52,10 @@ class GitlabService extends BaseService {
             ref_name: 'master', //默认分支
             since,
             until,
+            per_page: 15, //最大条数
           },
           dataType: 'json',
+          timeout: 1000 * 20,
         }
       )
       if (res.status === 200) {
@@ -75,7 +78,7 @@ class GitlabService extends BaseService {
         requests.push(await verdaccio.getPackageInfo(item))
       }
       const packageVersionCommit = {}
-      const res = await Promise.all(requests)
+      const requestsRes = await Promise.all(requests)
         .then((res) => {
           for (const pack of res) {
             if (this.isSuccess(pack)) {
@@ -86,7 +89,8 @@ class GitlabService extends BaseService {
                 const { gitHead } = packageData
                 versionData[version] = gitHead
               }
-              packageVersionCommit[_id] = versionData
+              packageVersionCommit[`${_id}`.replace('@zglib/', '')] =
+                versionData
             }
           }
           return this.success(packageVersionCommit)
@@ -94,7 +98,7 @@ class GitlabService extends BaseService {
         .catch((err) => {
           return this.failed(err)
         })
-      return res
+      return requestsRes
     } catch (error) {
       return this.failed(error.message)
     }
