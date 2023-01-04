@@ -3,6 +3,32 @@
 const BaseService = require('./base_service')
 
 class GitlabService extends BaseService {
+  async getProjects() {
+    // 需要用来获取name和项目id
+    const {
+      ctx,
+      config: { GITLABAPI, GITLABTOKEN },
+    } = this
+    const res = await ctx.curl(`${GITLABAPI}/projects`, {
+      method: 'GET',
+      data: {
+        private_token: GITLABTOKEN,
+        visibility: 'private', //私有项目
+        per_page: 10000,
+      },
+      dataType: 'json',
+    })
+    if (res.status === 200) {
+      const tempData = res?.data?.map((item) => {
+        const { id, name, readme_url } = item
+        return { id, name, readme_url }
+      })
+      return this.success(tempData)
+    } else {
+      return this.failed(res?.data?.message ?? '获取失败')
+    }
+  }
+
   async getProjectCommits(projectID, since, until) {
     try {
       const {

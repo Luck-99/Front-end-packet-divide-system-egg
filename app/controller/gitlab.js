@@ -4,27 +4,16 @@ const Controller = require('./base_controller')
 
 class GitlabController extends Controller {
   async getProjects() {
-    // 需要用来获取name和项目id
     const {
-      ctx,
-      config: { GITLABAPI, GITLABTOKEN },
+      service: { gitlab },
     } = this
-    const res = await ctx.curl(`${GITLABAPI}/projects`, {
-      method: 'GET',
-      data: {
-        private_token: GITLABTOKEN,
-        visibility: 'private', //私有项目
-        per_page: 10000,
-      },
-      dataType: 'json',
-    })
-    if (res.status === 200) {
-      this.success('获取项目成功', res.data)
-      return res.data
+    // 需要用来获取name和项目id
+    const res = await gitlab.getProjects()
+    if (this.isSuccess(res)) {
+      this.success('获取项目成功', this.getMsg(res))
     } else {
-      this.failed('获取失败', res)
+      this.failed(this.getMsg(res))
     }
-    return []
   }
 
   async getProjectCommits() {
