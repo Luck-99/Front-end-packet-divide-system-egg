@@ -3,7 +3,7 @@
 const BaseService = require('./base_service')
 
 class GitlabService extends BaseService {
-  async getProjects() {
+  async getProjects(projectName) {
     // 需要用来获取name和项目id
     const {
       ctx,
@@ -23,6 +23,13 @@ class GitlabService extends BaseService {
         const { id, name, readme_url } = item
         return { id, name, readme_url }
       })
+      if (projectName && typeof projectName === 'string') {
+        return this.success(tempData?.filter((pro) => pro.name === projectName))
+      } else if (projectName && projectName instanceof Array) {
+        return this.success(
+          tempData?.filter((pro) => projectName.includes(pro.name))
+        )
+      }
       return this.success(tempData)
     } else {
       return this.failed(res?.data?.message ?? '获取失败')

@@ -5,10 +5,12 @@ const Controller = require('./base_controller')
 class GitlabController extends Controller {
   async getProjects() {
     const {
+      ctx: { request },
       service: { gitlab },
     } = this
+    const { projectName } = request.body
     // 需要用来获取name和项目id
-    const res = await gitlab.getProjects()
+    const res = await gitlab.getProjects(projectName)
     if (this.isSuccess(res)) {
       this.success('获取项目成功', this.getMsg(res))
     } else {
