@@ -41,6 +41,7 @@ module.exports = (app) => {
   router.post('/gitlab/getProjects', gitlab.getProjects)
   router.post('/gitlab/getProjectCommits', gitlab.getProjectCommits)
   router.post('/gitlab/getVersionCommits', gitlab.getVersionCommits)
+  router.post('/gitlab/getProjectsCommits', gitlab.getProjectsCommits)
 
   io.of('/').route('chat', io.controller.chat)
 }

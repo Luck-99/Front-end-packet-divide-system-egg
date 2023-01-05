@@ -72,6 +72,7 @@ class GitlabService extends BaseService {
     try {
       const {
         service: { verdaccio },
+        config: { PROJECT_PREFIX },
       } = this
       const requests = []
       for (const item of packages) {
@@ -89,7 +90,7 @@ class GitlabService extends BaseService {
                 const { gitHead } = packageData
                 versionData[version] = gitHead
               }
-              packageVersionCommit[`${_id}`.replace('@zglib/', '')] =
+              packageVersionCommit[`${_id}`.replace(PROJECT_PREFIX, '')] =
                 versionData
             }
           }

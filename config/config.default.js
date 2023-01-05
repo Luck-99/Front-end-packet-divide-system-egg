@@ -53,6 +53,7 @@ module.exports = (appInfo) => {
   const gitlabConfig = {
     GITLABAPI: 'https://git.apexsoft.com.cn/api/v4',
     GITLABTOKEN: 'glpat-bpGjQxxfJtZsouzawzNJ',
+    PROJECT_PREFIX: '@zglib/',
   }
 
   // add your user config here
