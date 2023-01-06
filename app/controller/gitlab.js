@@ -51,79 +51,21 @@ class GitlabController extends Controller {
     const {
       ctx: { request },
       service: { gitlab },
-      config: { PROJECT_PREFIX },
     } = this
+    const MAX_COMMITS_RECORDS = 10 //提交记录限制
     const {
-      packages, // = [
+      packages,
+      // = [
       //   'product-system-product-management',
       //   'product-system-product-overview',
       // ],
+      maxRecords = MAX_COMMITS_RECORDS,
     } = request.body
-    const MAX_COMMITS_RECORDS = 10 //提交记录限制
-    // 需要用来获取项目名称name和项目对应gitlab的id
-    const projectsRes = await gitlab.getProjects(packages)
-    const tempPackages = packages?.map((pack) => {
-      if (!pack.includes(PROJECT_PREFIX)) {
-        return `${PROJECT_PREFIX}${pack}`
-      }
-      return pack
-    })
-    const versionCommitsRes = await gitlab.getVersionCommits(tempPackages)
-    if (this.isSuccess(projectsRes) && this.isSuccess(versionCommitsRes)) {
-      const projects = this.getMsg(projectsRes)
-      const versionCommits = this.getMsg(versionCommitsRes)
-      const projectCommits = []
-      const returnData = {}
-      for (const project of projects) {
-        const { id, name } = project
-        const projectCommitsRes = await gitlab.getProjectCommits(id)
-        if (this.isSuccess(projectCommitsRes)) {
-          //提取出项目名称和提交记录
-          projectCommits.push({ name, commits: this.getMsg(projectCommitsRes) })
-        }
-      }
-      /**  算法说明
-       * 从所有版本提交记录中遍历，得到项目对象{版本号：提交hash}
-       * 遍历本项目所有提交，找到版本和hash对应的记录
-       * 如果相同，就把这个记录添加到数组里
-       * 如果不相同，就依次加入到上一个版本里(初始length等于0的时候不加入，这时候没有版本)
-       */
-      for (const projectName in versionCommits) {
-        const tempProjects = versionCommits[projectName]
-        const gitHeads = Object.values(tempProjects).reverse()
-        const versions = Object.keys(tempProjects).reverse()
-        const { commits } = projectCommits.find(
-          (pro) => pro.name === projectName
-        )
-        returnData[projectName] = {}
-        let projectIndex
-        for (const commit of commits) {
-          const { created_at, title, message, author_name, committer_name } =
-            commit
-          const tempCommit = {
-            created_at,
-            title,
-            message,
-            author_name,
-            committer_name,
-          }
-          if (gitHeads.includes(commit.id)) {
-            projectIndex = gitHeads.findIndex(
-              (gitHead) => gitHead === commit.id
-            )
-            returnData[projectName][versions[projectIndex]] = [tempCommit]
-          } else if (
-            Object.keys(returnData[projectName]).length !== 0 &&
-            returnData[projectName][versions[projectIndex]].length <
-              MAX_COMMITS_RECORDS
-          ) {
-            returnData[projectName][versions[projectIndex]].push(tempCommit)
-          }
-        }
-      }
-      this.success('获取成功', returnData)
+    const res = await gitlab.getProjectsCommits(packages, maxRecords)
+    if (this.isSuccess(res)) {
+      this.success('获取成功', this.getMsg(res))
     } else {
-      this.failed(this.getMsg(versionCommitsRes))
+      this.failed(this.getMsg(res))
     }
   }
 }
