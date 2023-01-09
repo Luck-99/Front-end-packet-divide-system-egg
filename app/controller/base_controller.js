@@ -69,7 +69,13 @@ class BaseController extends Controller {
     }
   }
 
-  async recordActions(userName, envName, action, buildId = null) {
+  async recordActions(
+    userName,
+    envName,
+    action,
+    buildId = null,
+    queueId = null
+  ) {
     const {
       config: { TASKACTIONLIST },
       service: { file },
@@ -85,6 +91,7 @@ class BaseController extends Controller {
         action,
         actionDec: '进行了',
         time: Date.now(),
+        queueId,
       }
       tempList.unshift(obj)
       file.writeFile(TASKACTIONLIST, tempList)

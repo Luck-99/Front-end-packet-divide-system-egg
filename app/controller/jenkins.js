@@ -91,7 +91,9 @@ class JenkinsController extends Controller {
           this.recordActions(
             userName,
             await this.translateEnv(projectName),
-            '构建'
+            '构建',
+            null,
+            queueId
           )
           this.success('构建成功', queueId)
         } else {
