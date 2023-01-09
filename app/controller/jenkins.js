@@ -66,7 +66,10 @@ class JenkinsController extends Controller {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
       const userName = await this.getCurrentUserName()
       if (crumb) {
-        const { data } = await ctx.curl(
+        const {
+          headers: { location },
+          data,
+        } = await ctx.curl(
           `${JENKINSURL}/job/${name}/buildWithParameters?projectName=${projectName}`,
           {
             method: 'POST',
@@ -76,21 +79,21 @@ class JenkinsController extends Controller {
             dataType: 'json',
           }
         )
-        if (!data) {
-          const { nextBuildNumber } = await this.getJobInfo()
+        const queueId = /(?<=\/)[0-9]+(?=\/)/.exec(location)
+        if (!data && queueId) {
           file.modifyProjectEnvs(projectName, {
             builtBy: userName,
             lastBuildTime: Date.now(),
             building: true,
-            id: nextBuildNumber,
+            queueId: queueId[0],
+            id: null,
           })
           this.recordActions(
             userName,
             await this.translateEnv(projectName),
-            '构建',
-            nextBuildNumber
+            '构建'
           )
-          this.success('构建成功', data)
+          this.success('构建成功', queueId)
         } else {
           this.failed('构建失败', data.message)
         }
@@ -225,30 +228,50 @@ class JenkinsController extends Controller {
     const {
       ctx,
       config: { JENKINSURL, JENKINSJOBNAME },
-      service: { jenkins },
+      service: { file, jenkins },
     } = this
-    const { jobName = JENKINSJOBNAME, id, projectName } = ctx.query
+    const { jobName = JENKINSJOBNAME, queueId, projectName } = ctx.query
     const name = await this.getCurrentUserName()
     try {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
       if (crumb) {
-        const res = await ctx.curl(`${JENKINSURL}/job/${jobName}/${id}/stop`, {
-          method: 'POST',
-          headers: {
-            [Field]: crumb,
-          },
-          data: {
-            pretty: true,
-          },
-          dataType: 'json',
-        })
+        const { data: queueInfo } = await ctx.curl(
+          `${JENKINSURL}/queue/item/${queueId}/api/json`,
+          {
+            method: 'GET',
+            dataType: 'json',
+          }
+        )
+        const number = queueInfo?.executable?.number ?? null
+        const res = await ctx.curl(
+          number
+            ? `${JENKINSURL}/job/${jobName}/${number}/stop`
+            : `${JENKINSURL}/queue/cancelItem`,
+          {
+            method: 'POST',
+            headers: {
+              [Field]: crumb,
+            },
+            data: {
+              id: number ? null : queueId,
+            },
+            dataType: 'json',
+          }
+        )
         if (!res.data) {
           this.recordActions(
             name,
             await this.translateEnv(projectName),
             '停止构建',
-            id
+            number
           )
+          file.modifyProjectEnvs(projectName, {
+            building: false,
+            queueId: null,
+            updateBy: name,
+            updateTime: Date.now(),
+            id: number ?? null,
+          })
           this.success('停止成功')
         } else {
           this.failed(res.data.message)
@@ -257,7 +280,7 @@ class JenkinsController extends Controller {
         this.failed('crumb获取失败')
       }
     } catch (error) {
-      this.failed('停止失败', error)
+      this.failed('停止失败', error.message)
       return
     }
   }
