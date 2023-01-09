@@ -165,7 +165,7 @@ class GitlabService extends BaseService {
                 (gitHead) => gitHead === commit.id
               )
               returnData[projectName][versions[projectIndex]] = [
-                { ...tempCommit, no: 1 },
+                { ...tempCommit, index: 1 },
               ]
             } else if (
               Object.keys(returnData[projectName]).length !== 0 &&
