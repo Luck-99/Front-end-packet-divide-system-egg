@@ -40,6 +40,26 @@ class JenkinsService extends BaseService {
       return this.failed(err)
     }
   }
+
+  async getQueueInfo(queueId) {
+    try {
+      const {
+        ctx,
+        config: { JENKINSURL },
+      } = this
+      const { data } = await ctx.curl(
+        `${JENKINSURL}/queue/item/${queueId}/api/json`,
+        {
+          method: 'GET',
+          dataType: 'json',
+        }
+      )
+      return this.success(data)
+    } catch (err) {
+      console.log(err)
+      return this.failed(err)
+    }
+  }
 }
 
 module.exports = JenkinsService

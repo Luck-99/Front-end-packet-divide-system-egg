@@ -237,46 +237,43 @@ class JenkinsController extends Controller {
     try {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
       if (crumb) {
-        const { data: queueInfo } = await ctx.curl(
-          `${JENKINSURL}/queue/item/${queueId}/api/json`,
-          {
-            method: 'GET',
-            dataType: 'json',
-          }
-        )
-        const number = queueInfo?.executable?.number ?? null
-        const res = await ctx.curl(
-          number
-            ? `${JENKINSURL}/job/${jobName}/${number}/stop`
-            : `${JENKINSURL}/queue/cancelItem`,
-          {
-            method: 'POST',
-            headers: {
-              [Field]: crumb,
-            },
-            data: {
-              id: number ? null : queueId,
-            },
-            dataType: 'json',
-          }
-        )
-        if (!res.data) {
-          this.recordActions(
-            name,
-            await this.translateEnv(projectName),
-            '停止构建',
+        const queueInfoRes = await jenkins.getQueueInfo(queueId)
+        if (this.isSuccess(queueInfoRes)) {
+          const queueInfo = this.getMsg(queueInfoRes)
+          const number = queueInfo?.executable?.number ?? null
+          const res = await ctx.curl(
             number
+              ? `${JENKINSURL}/job/${jobName}/${number}/stop`
+              : `${JENKINSURL}/queue/cancelItem`,
+            {
+              method: 'POST',
+              headers: {
+                [Field]: crumb,
+              },
+              data: {
+                id: number ? null : queueId,
+              },
+              dataType: 'json',
+            }
           )
-          file.modifyProjectEnvs(projectName, {
-            building: false,
-            queueId: null,
-            updateBy: name,
-            updateTime: Date.now(),
-            id: number ?? null,
-          })
-          this.success('停止成功')
-        } else {
-          this.failed(res.data.message)
+          if (!res.data) {
+            this.recordActions(
+              name,
+              await this.translateEnv(projectName),
+              '停止构建',
+              number
+            )
+            file.modifyProjectEnvs(projectName, {
+              building: false,
+              queueId: null,
+              updateBy: name,
+              updateTime: Date.now(),
+              id: number ?? null,
+            })
+            this.success('停止成功')
+          } else {
+            this.failed(res.data.message)
+          }
         }
       } else {
         this.failed('crumb获取失败')
