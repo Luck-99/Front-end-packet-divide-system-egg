@@ -232,7 +232,12 @@ class JenkinsController extends Controller {
       config: { JENKINSURL, JENKINSJOBNAME },
       service: { file, jenkins },
     } = this
-    const { jobName = JENKINSJOBNAME, queueId, id, projectName } = ctx.query
+    const {
+      jobName = JENKINSJOBNAME,
+      queueId,
+      id,
+      projectName,
+    } = ctx.request.body
     const name = await this.getCurrentUserName()
     try {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()

@@ -25,7 +25,7 @@ module.exports = (app) => {
   router.get('/jenkins/getQueue', jenkins.getQueue)
   router.get('/jenkins/getJobInfo', jenkins.getJobInfo)
   router.get('/jenkins/downloadFile', jenkins.downloadFile)
-  router.get('/jenkins/stopBuildJob', jenkins.stopBuildJob)
+  router.post('/jenkins/stopBuildJob', jenkins.stopBuildJob)
 
   router.get('/verdaccio/getAllPackages', verdaccio.getAllPackages)
   router.get('/verdaccio/getPackageInfo', verdaccio.getPackageInfo)
