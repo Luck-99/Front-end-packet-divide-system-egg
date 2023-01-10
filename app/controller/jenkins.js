@@ -232,15 +232,15 @@ class JenkinsController extends Controller {
       config: { JENKINSURL, JENKINSJOBNAME },
       service: { file, jenkins },
     } = this
-    const { jobName = JENKINSJOBNAME, queueId, projectName } = ctx.query
+    const { jobName = JENKINSJOBNAME, queueId, id, projectName } = ctx.query
     const name = await this.getCurrentUserName()
     try {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
       if (crumb) {
         const queueInfoRes = await jenkins.getQueueInfo(queueId)
-        if (this.isSuccess(queueInfoRes)) {
+        if (this.isSuccess(queueInfoRes) || id) {
           const queueInfo = this.getMsg(queueInfoRes)
-          const number = queueInfo?.executable?.number ?? null
+          const number = queueInfo?.executable?.number ?? id
           const res = await ctx.curl(
             number
               ? `${JENKINSURL}/job/${jobName}/${number}/stop`
