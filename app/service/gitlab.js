@@ -7,7 +7,7 @@ class GitlabService extends BaseService {
     // 需要用来获取name和项目id
     const {
       ctx,
-      config: { GITLABAPI, GITLABTOKEN },
+      config: { GITLABAPI, GITLABTOKEN, PROJECT_PREFIX },
     } = this
     const res = await ctx.curl(`${GITLABAPI}/projects`, {
       method: 'GET',
@@ -25,10 +25,20 @@ class GitlabService extends BaseService {
         return { id, name, readme_url }
       })
       if (projectName && typeof projectName === 'string') {
-        return this.success(tempData?.filter((pro) => pro.name === projectName))
+        return this.success(
+          tempData?.filter(
+            (pro) =>
+              pro.name === projectName ||
+              `${PROJECT_PREFIX}${pro.name}` === projectName
+          )
+        )
       } else if (projectName && projectName instanceof Array) {
         return this.success(
-          tempData?.filter((pro) => projectName.includes(pro.name))
+          tempData?.filter(
+            (pro) =>
+              projectName.includes(pro.name) ||
+              projectName.includes(`${PROJECT_PREFIX}${pro.name}`)
+          )
         )
       }
       return this.success(tempData)
