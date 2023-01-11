@@ -60,6 +60,29 @@ class JenkinsService extends BaseService {
       return this.failed(err)
     }
   }
+
+  async getBuildLog(buildID) {
+    try {
+      const {
+        ctx,
+        config: { JENKINSURL, JENKINSJOBNAME },
+      } = this
+      const res = await ctx.curl(
+        `${JENKINSURL}/job/${JENKINSJOBNAME}/${buildID}/logText/progressiveText`,
+        {
+          method: 'GET',
+          dataType: 'text',
+        }
+      )
+      if (res.status === 200) {
+        return this.success(res.data)
+      }
+      return this.failed(res)
+    } catch (err) {
+      console.log(err)
+      return this.failed(err)
+    }
+  }
 }
 
 module.exports = JenkinsService

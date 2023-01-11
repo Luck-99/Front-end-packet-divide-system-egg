@@ -288,6 +288,21 @@ class JenkinsController extends Controller {
       return
     }
   }
+
+  async getBuildLog() {
+    const {
+      ctx,
+      config: { JENKINSJOBNAME },
+      service: { jenkins },
+    } = this
+    const { id } = ctx.query
+    const res = await jenkins.getBuildLog(id)
+    if (this.isSuccess(res)) {
+      this.success('获取成功', this.getMsg(res))
+    } else {
+      this.failed('获取失败', this.getMsg(res))
+    }
+  }
 }
 
 module.exports = JenkinsController
