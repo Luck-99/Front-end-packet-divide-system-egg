@@ -40,10 +40,13 @@ class VerdaccioController extends Controller {
       ctx,
       config: { VERDACCIOURL },
     } = this
-    const { name } = ctx.query
+    const { name, version } = ctx.query
     const res = await ctx.curl(`${VERDACCIOURL}/package/readme/${name}`, {
       method: 'GET',
-      // dataType: 'json',
+      dataType: 'text',
+      data: {
+        v: version,
+      },
     })
     if (res.status === 200) {
       this.success('获取成功', res.data)
