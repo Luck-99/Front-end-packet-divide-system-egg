@@ -140,6 +140,49 @@ class FileService extends BaseService {
     }
     return this.failed('地址不存在')
   }
+
+  async environmentSetting(envKey, userInfo, isLeave = false) {
+    try {
+      const {
+        app: { io },
+      } = this
+      const { name, username } = userInfo
+      let useEnvironmentUserObj = {}
+      const fileName = 'useEnvironmentUser.json'
+      if (this.existPath(fileName)) {
+        const res = await this.readFile(fileName)
+        if (this.isSuccess(res)) {
+          useEnvironmentUserObj = JSON.parse(this.getMsg(res))
+        }
+      }
+      if (!useEnvironmentUserObj[envKey]) {
+        useEnvironmentUserObj[envKey] = []
+      }
+      const tempObj = {
+        entryTime: Date.now(),
+        name,
+        username,
+      }
+      if (
+        useEnvironmentUserObj[envKey].findIndex(
+          (user) => user.username === username
+        ) === -1
+      ) {
+        useEnvironmentUserObj[envKey].push(tempObj)
+      }
+      if (isLeave) {
+        useEnvironmentUserObj[envKey] = useEnvironmentUserObj[envKey].filter(
+          (user) => user.username !== username
+        )
+        io.of('/').emit('leaveEnvironmentSetting', { envKey, name, username })
+      }
+      this.writeFile(fileName, useEnvironmentUserObj)
+      return this.success(useEnvironmentUserObj[envKey])
+    } catch (error) {
+      console.log(error)
+      return this.failed(error.message)
+    }
+  }
 }
 
 module.exports = FileService

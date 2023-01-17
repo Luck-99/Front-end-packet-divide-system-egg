@@ -104,6 +104,21 @@ class FileController extends Controller {
       this.failed('获取失败')
     }
   }
+
+  async environmentSetting() {
+    const {
+      ctx: { query },
+      service: { file },
+    } = this
+    const { envKey, isLeave = false } = query
+    const userInfo = await this.getCurrentUser()
+    const res = await file.environmentSetting(envKey, userInfo, isLeave)
+    if (this.isSuccess(res)) {
+      this.success('成功', this.getMsg(res))
+    } else {
+      this.failed('失败')
+    }
+  }
 }
 
 module.exports = FileController
