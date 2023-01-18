@@ -152,7 +152,9 @@ class FileService extends BaseService {
       if (this.existPath(fileName)) {
         const res = await this.readFile(fileName)
         if (this.isSuccess(res)) {
-          useEnvironmentUserObj = JSON.parse(this.getMsg(res))
+          useEnvironmentUserObj = JSON.parse(
+            this.getMsg(res) ? this.getMsg(res) : '{}'
+          )
         }
       }
       if (!useEnvironmentUserObj[envKey]) {
