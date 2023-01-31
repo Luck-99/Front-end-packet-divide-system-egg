@@ -1,0 +1,17 @@
+{
+  "name": "env-xingye",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "extract": "node scripts/extract.js",
+    "reset": "node scripts/reset.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zglib/product-system-product-management": "1.0.2",
+    "@zglib/product-system-product-overview": "1.0.4"
+  }
+}

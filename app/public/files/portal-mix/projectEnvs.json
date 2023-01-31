@@ -1,0 +1,62 @@
+[
+  {
+    "key": "env_xingye",
+    "description": "兴业环境",
+    "id": 89,
+    "building": false,
+    "buildable": true,
+    "lastBuildTime": 1673506478517,
+    "creatBy": "张三",
+    "creatTime": 1670302180432,
+    "updateBy": "张泽林",
+    "updateTime": 1673937813393,
+    "path": "./env_xingye.json",
+    "builtBy": "管理员",
+    "queueId": null
+  },
+  {
+    "key": "env_kaifa",
+    "description": "开发环境",
+    "id": 87,
+    "building": false,
+    "buildable": true,
+    "lastBuildTime": 1673489264260,
+    "builtBy": "张泽林",
+    "creatBy": "张三",
+    "creatTime": 1670305080432,
+    "updateBy": "张泽林",
+    "updateTime": 1673489272512,
+    "path": "./env_kaifa.json",
+    "queueId": null
+  },
+  {
+    "key": "env_zhongjin",
+    "description": "中金环境",
+    "id": null,
+    "building": false,
+    "buildable": true,
+    "lastBuildTime": 1673315056013,
+    "builtBy": "管理员",
+    "creatBy": "张三",
+    "creatTime": 1670205180432,
+    "updateBy": "管理员",
+    "updateTime": 1673315068088,
+    "path": "./env-zhongjin.json",
+    "queueId": null
+  },
+  {
+    "key": "env_taibao",
+    "description": "太保环境",
+    "id": null,
+    "building": false,
+    "buildable": true,
+    "lastBuildTime": 1673315056503,
+    "builtBy": "管理员",
+    "creatBy": "张三",
+    "creatTime": 1670205180432,
+    "updateBy": "管理员",
+    "updateTime": 1673315070084,
+    "path": "./env_taibao.json",
+    "queueId": null
+  }
+]

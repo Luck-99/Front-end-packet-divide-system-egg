@@ -1,0 +1,12 @@
+{
+    "name": "potal-mix",
+    "version": "1.0.0",
+    "description": "门户聚合",
+    "scripts": {
+      "extract": "node scripts/extract.js",
+      "switch-env": "node scripts/switch-env.js"
+    },
+    "keywords": [],
+    "author": "kangchongguang"
+  }
+  

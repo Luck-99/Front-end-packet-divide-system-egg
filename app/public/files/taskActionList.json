@@ -1,262 +1,1806 @@
 [
   {
-    "id": 30,
+    "id": 175,
+    "userName": "张泽林",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "配置更改",
+    "actionDec": "进行了",
+    "time": 1673937813399,
+    "queueId": null
+  },
+  {
+    "id": 174,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "89",
+    "time": 1673506546647,
+    "duration": 57972
+  },
+  {
+    "id": 173,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673506478528,
+    "queueId": [
+      "292"
+    ]
+  },
+  {
+    "id": 172,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "88",
+    "time": 1673489334732,
+    "duration": 3336
+  },
+  {
+    "id": 171,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 88,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673489333761,
+    "queueId": null
+  },
+  {
+    "id": 170,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673489325821,
+    "queueId": [
+      "291"
+    ]
+  },
+  {
+    "id": 169,
+    "userName": "张泽林",
+    "envName": "开发环境",
+    "buildId": 87,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673489272515,
+    "queueId": null
+  },
+  {
+    "id": 168,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 86,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673489268818,
+    "queueId": null
+  },
+  {
+    "id": 167,
+    "userName": "张泽林",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673489264263,
+    "queueId": [
+      "290"
+    ]
+  },
+  {
+    "id": 166,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673489254927,
+    "queueId": [
+      "289"
+    ]
+  },
+  {
+    "id": 165,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "配置更改",
+    "actionDec": "进行了",
+    "time": 1673428491638,
+    "queueId": null
+  },
+  {
+    "id": 164,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "85",
+    "time": 1673408924810,
+    "duration": 30262
+  },
+  {
+    "id": 163,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673408886113,
+    "queueId": [
+      "288"
+    ]
+  },
+  {
+    "id": 162,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "84",
+    "time": 1673407848939,
+    "duration": 30294
+  },
+  {
+    "id": 161,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673407808771,
+    "queueId": [
+      "287"
+    ]
+  },
+  {
+    "id": 160,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "83",
+    "time": 1673401687120,
+    "duration": 10446
+  },
+  {
+    "id": 159,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673401678515,
+    "queueId": null
+  },
+  {
+    "id": 158,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673401676316,
+    "queueId": [
+      "286"
+    ]
+  },
+  {
+    "id": 157,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673401671017,
+    "queueId": [
+      "285"
+    ]
+  },
+  {
+    "id": 156,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "配置更改",
+    "actionDec": "进行了",
+    "time": 1673336505221,
+    "queueId": null
+  },
+  {
+    "id": 155,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "82",
+    "time": 1673336482483,
+    "duration": 48259
+  },
+  {
+    "id": 154,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673336450951,
+    "queueId": null
+  },
+  {
+    "id": 153,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673336433573,
+    "queueId": [
+      "284"
+    ]
+  },
+  {
+    "id": 152,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673336425262,
+    "queueId": [
+      "283"
+    ]
+  },
+  {
+    "id": 151,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673315070086,
+    "queueId": null
+  },
+  {
+    "id": 150,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673315068977,
+    "queueId": null
+  },
+  {
+    "id": 149,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673315068090,
+    "queueId": null
+  },
+  {
+    "id": 148,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 81,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673315067142,
+    "queueId": null
+  },
+  {
+    "id": 147,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673315056505,
+    "queueId": [
+      "282"
+    ]
+  },
+  {
+    "id": 146,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673315056015,
+    "queueId": [
+      "281"
+    ]
+  },
+  {
+    "id": 145,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673315055349,
+    "queueId": [
+      "280"
+    ]
+  },
+  {
+    "id": 144,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673315054731,
+    "queueId": [
+      "279"
+    ]
+  },
+  {
+    "id": 143,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": "80",
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673313447663,
+    "queueId": null
+  },
+  {
+    "id": 142,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": "79",
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673313446263,
+    "queueId": null
+  },
+  {
+    "id": 141,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673313444274,
+    "queueId": null
+  },
+  {
+    "id": 140,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": "78",
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673313443237,
+    "queueId": null
+  },
+  {
+    "id": 139,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313428459,
+    "queueId": [
+      "278"
+    ]
+  },
+  {
+    "id": 138,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313427868,
+    "queueId": [
+      "277"
+    ]
+  },
+  {
+    "id": 137,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313427230,
+    "queueId": [
+      "276"
+    ]
+  },
+  {
+    "id": 136,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313426688,
+    "queueId": [
+      "275"
+    ]
+  },
+  {
+    "id": 135,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "77",
+    "time": 1673313194018,
+    "duration": 33065
+  },
+  {
+    "id": 134,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313152024,
+    "queueId": [
+      "274"
+    ]
+  },
+  {
+    "id": 133,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "76",
+    "time": 1673313071172,
+    "duration": 31767
+  },
+  {
+    "id": 132,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "75",
+    "time": 1673313038942,
+    "duration": 28270
+  },
+  {
+    "id": 131,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673313038231,
+    "queueId": null
+  },
+  {
+    "id": 130,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673313024174,
+    "queueId": null
+  },
+  {
+    "id": 129,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313006582,
+    "queueId": [
+      "273"
+    ]
+  },
+  {
+    "id": 128,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313006064,
+    "queueId": [
+      "272"
+    ]
+  },
+  {
+    "id": 127,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313005645,
+    "queueId": [
+      "271"
+    ]
+  },
+  {
+    "id": 126,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673313005205,
+    "queueId": [
+      "270"
+    ]
+  },
+  {
+    "id": 125,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "74",
+    "time": 1673312796341,
+    "duration": 26018
+  },
+  {
+    "id": 124,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "73",
+    "time": 1673312771125,
+    "duration": 26409
+  },
+  {
+    "id": 123,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "72",
+    "time": 1673312743914,
+    "duration": 32791
+  },
+  {
+    "id": 122,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "71",
+    "time": 1673312711644,
+    "duration": 36117
+  },
+  {
+    "id": 121,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673312670983,
+    "queueId": [
+      "269"
+    ]
+  },
+  {
+    "id": 120,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673312670327,
+    "queueId": [
+      "268"
+    ]
+  },
+  {
+    "id": 119,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673312669788,
+    "queueId": [
+      "267"
+    ]
+  },
+  {
+    "id": 118,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673312669134,
+    "queueId": [
+      "266"
+    ]
+  },
+  {
+    "id": 117,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "70",
+    "time": 1673257328105,
+    "duration": 26355
+  },
+  {
+    "id": 116,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673257294830,
+    "queueId": [
+      "265"
+    ]
+  },
+  {
+    "id": 115,
+    "userName": "admin",
+    "envName": "兴业环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "69",
+    "time": 1673256746282,
+    "duration": 155706
+  },
+  {
+    "id": 114,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673256583431,
+    "queueId": [
+      "264"
+    ]
+  },
+  {
+    "id": 113,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 68,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673255948051,
+    "queueId": null
+  },
+  {
+    "id": 112,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 67,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673255945865,
+    "queueId": null
+  },
+  {
+    "id": 111,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673255944072,
+    "queueId": null
+  },
+  {
+    "id": 110,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673255942162,
+    "queueId": null
+  },
+  {
+    "id": 109,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255935894,
+    "queueId": [
+      "263"
+    ]
+  },
+  {
+    "id": 108,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255935428,
+    "queueId": [
+      "262"
+    ]
+  },
+  {
+    "id": 107,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255934828,
+    "queueId": [
+      "261"
+    ]
+  },
+  {
+    "id": 106,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255934312,
+    "queueId": [
+      "260"
+    ]
+  },
+  {
+    "id": 105,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": 66,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673255621067,
+    "queueId": null
+  },
+  {
+    "id": 104,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255607769,
+    "queueId": [
+      "259"
+    ]
+  },
+  {
+    "id": 103,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255526096,
+    "queueId": [
+      "258"
+    ]
+  },
+  {
+    "id": 102,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255473694,
+    "queueId": [
+      "257"
+    ]
+  },
+  {
+    "id": 101,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673255427856,
+    "queueId": null
+  },
+  {
+    "id": 100,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673255427256,
+    "queueId": null
+  },
+  {
+    "id": 99,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673255426712,
+    "queueId": null
+  },
+  {
+    "id": 98,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255406333,
+    "queueId": [
+      "256"
+    ]
+  },
+  {
+    "id": 97,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255405875,
+    "queueId": [
+      "255"
+    ]
+  },
+  {
+    "id": 96,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255405462,
+    "queueId": [
+      "254"
+    ]
+  },
+  {
+    "id": 95,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673255404283,
+    "queueId": [
+      "253"
+    ]
+  },
+  {
+    "id": 94,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 62,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254680556,
+    "queueId": null
+  },
+  {
+    "id": 93,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254614473,
+    "queueId": null
+  },
+  {
+    "id": 92,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254538310,
+    "queueId": null
+  },
+  {
+    "id": 91,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254533124,
+    "queueId": null
+  },
+  {
+    "id": 90,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254528010,
+    "queueId": null
+  },
+  {
+    "id": 89,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254464833,
+    "queueId": null
+  },
+  {
+    "id": 88,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254408053,
+    "queueId": null
+  },
+  {
+    "id": 87,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254396800,
+    "queueId": null
+  },
+  {
+    "id": 86,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254392048,
+    "queueId": null
+  },
+  {
+    "id": 85,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254390229,
+    "queueId": null
+  },
+  {
+    "id": 84,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254389790,
+    "queueId": null
+  },
+  {
+    "id": 83,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254389311,
+    "queueId": null
+  },
+  {
+    "id": 82,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254388979,
+    "queueId": null
+  },
+  {
+    "id": 81,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254125092,
+    "queueId": null
+  },
+  {
+    "id": 80,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254124522,
+    "queueId": null
+  },
+  {
+    "id": 79,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254123615,
+    "queueId": null
+  },
+  {
+    "id": 78,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673254123145,
+    "queueId": null
+  },
+  {
+    "id": 77,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254120219,
+    "queueId": null
+  },
+  {
+    "id": 76,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254119753,
+    "queueId": null
+  },
+  {
+    "id": 75,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254119197,
+    "queueId": null
+  },
+  {
+    "id": 74,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673254118672,
+    "queueId": null
+  },
+  {
+    "id": 73,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673253374949,
+    "queueId": null
+  },
+  {
+    "id": 72,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673253374559,
+    "queueId": null
+  },
+  {
+    "id": 71,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673253373961,
+    "queueId": null
+  },
+  {
+    "id": 70,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673253373535,
+    "queueId": null
+  },
+  {
+    "id": 69,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673252809591,
+    "queueId": null
+  },
+  {
+    "id": 68,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673251529582,
+    "queueId": null
+  },
+  {
+    "id": 67,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": null,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673251332262,
+    "queueId": null
+  },
+  {
+    "id": 66,
+    "userName": "admin",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "51",
+    "time": 1673247798900,
+    "duration": 26970
+  },
+  {
+    "id": 65,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 51,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673247766415
+  },
+  {
+    "id": 64,
+    "userName": "admin",
+    "envName": "中金环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "50",
+    "time": 1673247733413,
+    "duration": 26700
+  },
+  {
+    "id": 63,
+    "userName": "admin",
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "50",
+    "time": 1673247733408,
+    "duration": 26700
+  },
+  {
+    "id": 62,
+    "userName": "admin",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "50",
+    "time": 1673247733400,
+    "duration": 26700
+  },
+  {
+    "id": 61,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 50,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673247698638
+  },
+  {
+    "id": 60,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 50,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673247698105
+  },
+  {
+    "id": 59,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 50,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673247697718
+  },
+  {
+    "id": 58,
+    "userName": "admin",
+    "envName": "中金环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "47",
+    "time": 1673247123141,
+    "duration": 61802
+  },
+  {
+    "id": 57,
+    "userName": "admin",
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "47",
+    "time": 1673247123134,
+    "duration": 61802
+  },
+  {
+    "id": 56,
+    "userName": "admin",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "47",
+    "time": 1673247123127,
+    "duration": 61802
+  },
+  {
+    "id": 55,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 47,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673247055927
+  },
+  {
+    "id": 54,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 47,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673247055246
+  },
+  {
+    "id": 53,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 47,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673247054905
+  },
+  {
+    "id": 52,
+    "userName": "admin",
+    "envName": "中金环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "44",
+    "time": 1673246030943,
+    "duration": 32851
+  },
+  {
+    "id": 51,
+    "userName": "admin",
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "44",
+    "time": 1673246030935,
+    "duration": 32851
+  },
+  {
+    "id": 50,
+    "userName": "admin",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "44",
+    "time": 1673246030929,
+    "duration": 32851
+  },
+  {
+    "id": 49,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 44,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245792415
+  },
+  {
+    "id": 48,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 44,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245791756
+  },
+  {
+    "id": 47,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 44,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245791189
+  },
+  {
+    "id": 46,
+    "userName": "admin",
+    "envName": "中金环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "42",
+    "time": 1673245772307,
+    "duration": 13158
+  },
+  {
+    "id": 45,
     "userName": "admin",
     "envName": "开发环境",
     "action": "失败",
     "actionDec": "构建结果",
-    "buildId": "126",
-    "time": 1671420993766
+    "buildId": "42",
+    "time": 1673245772301,
+    "duration": 13158
+  },
+  {
+    "id": 44,
+    "userName": "admin",
+    "envName": "兴业环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "42",
+    "time": 1673245772294,
+    "duration": 13158
+  },
+  {
+    "id": 43,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": "42",
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673245771133
+  },
+  {
+    "id": 42,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": "42",
+    "action": "停止构建",
+    "actionDec": "进行了",
+    "time": 1673245770354
+  },
+  {
+    "id": 41,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 42,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245753089
+  },
+  {
+    "id": 40,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 42,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245752609
+  },
+  {
+    "id": 39,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 42,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245752177
+  },
+  {
+    "id": 38,
+    "userName": "admin",
+    "envName": "太保环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "38",
+    "time": 1673245312691,
+    "duration": 34478
+  },
+  {
+    "id": 37,
+    "userName": "admin",
+    "envName": "中金环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "38",
+    "time": 1673245312683,
+    "duration": 34478
+  },
+  {
+    "id": 36,
+    "userName": "admin",
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "38",
+    "time": 1673245312675,
+    "duration": 34478
+  },
+  {
+    "id": 35,
+    "userName": "admin",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "38",
+    "time": 1673245312669,
+    "duration": 34478
+  },
+  {
+    "id": 34,
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": 38,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245273501
+  },
+  {
+    "id": 33,
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 38,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245272971
+  },
+  {
+    "id": 32,
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 38,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245272331
+  },
+  {
+    "id": 31,
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 38,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1673245270644
+  },
+  {
+    "id": 30,
+    "userName": "admin",
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "37",
+    "time": 1673244201692,
+    "duration": 40179
   },
   {
     "id": 29,
-    "userName": "admin",
-    "envName": "开发环境",
-    "buildId": "126",
-    "action": "停止构建",
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 37,
+    "action": "构建",
     "actionDec": "进行了",
-    "time": 1671420993069
+    "time": 1673244154371
   },
   {
     "id": 28,
     "userName": "admin",
     "envName": "开发环境",
-    "buildId": 126,
-    "action": "构建",
-    "actionDec": "进行了",
-    "time": 1671420984569
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "36",
+    "time": 1672390898191,
+    "duration": 95594
   },
   {
     "id": 27,
-    "userName": "admin",
-    "envName": "兴业环境",
-    "action": "失败",
-    "actionDec": "构建结果",
-    "buildId": "125",
-    "time": 1671420952442
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 36,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1672390796819
   },
   {
     "id": 26,
-    "userName": "admin",
-    "envName": "兴业环境",
-    "buildId": "125",
-    "action": "停止构建",
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "配置更改",
     "actionDec": "进行了",
-    "time": 1671420952111
+    "time": 1672390791314
   },
   {
     "id": 25,
-    "userName": "admin",
-    "envName": "兴业环境",
-    "buildId": "125",
-    "action": "停止构建",
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": null,
+    "action": "配置更改",
     "actionDec": "进行了",
-    "time": 1671420950948
+    "time": 1672372088355
   },
   {
     "id": 24,
     "userName": "admin",
-    "envName": "兴业环境",
-    "buildId": 125,
-    "action": "构建",
-    "actionDec": "进行了",
-    "time": 1671420945469
+    "envName": "太保环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "32",
+    "time": 1672371762443,
+    "duration": 33825
   },
   {
     "id": 23,
     "userName": "admin",
-    "envName": "兴业环境",
-    "action": "失败",
+    "envName": "中金环境",
+    "action": "成功",
     "actionDec": "构建结果",
-    "buildId": "124",
-    "time": 1671420426348
+    "buildId": "32",
+    "time": 1672371762434,
+    "duration": 33825
   },
   {
     "id": 22,
     "userName": "admin",
-    "envName": "兴业环境",
-    "buildId": 124,
-    "action": "构建",
-    "actionDec": "进行了",
-    "time": 1671420398564
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "32",
+    "time": 1672371762426,
+    "duration": 33825
   },
   {
     "id": 21,
     "userName": "admin",
-    "envName": "南银环境",
-    "action": "构建",
-    "actionDec": "进行了",
-    "buildId": 123,
-    "time": 1671416500872
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "32",
+    "time": 1672371762420,
+    "duration": 33825
   },
   {
     "id": 20,
-    "userName": "admin",
-    "envName": "开发环境",
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": 32,
     "action": "构建",
     "actionDec": "进行了",
-    "buildId": 122,
-    "time": 1671416467450
+    "time": 1672371721190
   },
   {
     "id": 19,
-    "userName": "admin",
-    "envName": "兴业环境",
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 32,
     "action": "构建",
     "actionDec": "进行了",
-    "buildId": 122,
-    "time": 1671416411717
+    "time": 1672371720343
   },
   {
     "id": 18,
-    "userName": "admin",
-    "envName": "#3",
-    "action": "成功",
-    "actionDec": "构建结果",
-    "time": 1671416372409
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 32,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1672371719428
   },
   {
     "id": 17,
-    "userName": "admin",
-    "envName": "南银环境",
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 32,
     "action": "构建",
     "actionDec": "进行了",
-    "time": 1671094120790
+    "time": 1672371718333
   },
   {
     "id": 16,
     "userName": "admin",
-    "envName": "开发环境",
-    "action": "构建",
-    "actionDec": "进行了",
-    "time": 1671093910952
+    "envName": "太保环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "28",
+    "time": 1672371580370,
+    "duration": 67993
   },
   {
     "id": 15,
     "userName": "admin",
-    "envName": "兴业环境",
-    "action": "配置更改",
-    "actionDec": "进行了",
-    "time": 1671089594832
+    "envName": "中金环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "28",
+    "time": 1672371580358,
+    "duration": 67993
   },
   {
     "id": 14,
     "userName": "admin",
-    "envName": "太保环境",
-    "action": "构建",
-    "actionDec": "进行了",
-    "time": 1671089450082
+    "envName": "开发环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "28",
+    "time": 1672371580334,
+    "duration": 67993
   },
   {
     "id": 13,
     "userName": "admin",
-    "envName": "南银环境",
-    "action": "构建",
-    "actionDec": "进行了",
-    "time": 1671089445737
+    "envName": "兴业环境",
+    "action": "成功",
+    "actionDec": "构建结果",
+    "buildId": "28",
+    "time": 1672371580322,
+    "duration": 67993
   },
   {
     "id": 12,
-    "userName": "admin",
-    "envName": "南银环境",
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": 28,
     "action": "构建",
     "actionDec": "进行了",
-    "time": 1671089398535
+    "time": 1672371508390
   },
   {
     "id": 11,
-    "userName": "admin",
-    "envName": "兴业环境",
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 28,
     "action": "构建",
     "actionDec": "进行了",
-    "time": 1671089325576
+    "time": 1672371507704
   },
   {
     "id": 10,
-    "userName": "admin",
-    "envName": "南银环境",
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 28,
     "action": "构建",
     "actionDec": "进行了",
-    "time": 1671089015432
+    "time": 1672371506892
   },
   {
     "id": 9,
-    "userName": "admin",
+    "userName": "管理员",
     "envName": "兴业环境",
+    "buildId": 28,
     "action": "构建",
     "actionDec": "进行了",
-    "time": 1671086430235
+    "time": 1672371505818
   },
   {
     "id": 8,
-    "userName": "admin",
-    "envName": "兴业环境",
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": null,
     "action": "配置更改",
     "actionDec": "进行了",
-    "time": 1671086415294
+    "time": 1672371463857
   },
   {
     "id": 7,
     "userName": "admin",
-    "envName": "兴业环境",
-    "action": "配置更改",
-    "actionDec": "进行了",
-    "time": 1671086377194
+    "envName": "太保环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "24",
+    "time": 1672371244921,
+    "duration": 22153
   },
   {
     "id": 6,
     "userName": "admin",
-    "envName": "开发环境",
-    "action": "构建",
-    "actionDec": "进行了",
-    "time": 1671072712259
+    "envName": "中金环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "24",
+    "time": 1672371244916,
+    "duration": 22153
   },
   {
     "id": 5,
     "userName": "admin",
-    "envName": "兴业环境",
-    "action": "更改配置",
-    "actionDec": "进行了",
-    "time": 1671071937765
+    "envName": "开发环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "24",
+    "time": 1672371244912,
+    "duration": 22153
   },
   {
     "id": 4,
     "userName": "admin",
-    "envName": "太保环境",
-    "action": "更改配置",
-    "actionDec": "进行了",
-    "time": 1671071862072
+    "envName": "兴业环境",
+    "action": "失败",
+    "actionDec": "构建结果",
+    "buildId": "24",
+    "time": 1672371244908,
+    "duration": 22153
   },
   {
     "id": 3,
-    "userName": "admin",
-    "envName": "南银环境",
-    "actionDec": "进行了",
+    "userName": "管理员",
+    "envName": "太保环境",
+    "buildId": 24,
     "action": "构建",
-    "time": 1671010325485
+    "actionDec": "进行了",
+    "time": 1672371220146
   },
   {
     "id": 2,
-    "userName": "东东",
-    "envName": "太保环境",
-    "actionDec": "进行了",
+    "userName": "管理员",
+    "envName": "中金环境",
+    "buildId": 24,
     "action": "构建",
-    "time": 1670898320821
+    "actionDec": "进行了",
+    "time": 1672371219528
   },
   {
     "id": 1,
-    "userName": "张三",
-    "envName": "",
-    "actionDec": "新增了",
-    "action": "开发环境",
-    "time": 1670868320821
+    "userName": "管理员",
+    "envName": "开发环境",
+    "buildId": 24,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1672371218441
   },
   {
     "id": 0,
-    "userName": "王五",
-    "envName": "",
-    "actionDec": "新增了",
-    "action": "南银环境",
-    "time": 1670868620821
+    "userName": "管理员",
+    "envName": "兴业环境",
+    "buildId": 24,
+    "action": "构建",
+    "actionDec": "进行了",
+    "time": 1672371216395
   }
 ]

@@ -1,0 +1,16 @@
+{
+  "name": "env_taibao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "extract": "node scripts/extract.js",
+    "reset": "node scripts/reset.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zglib/product-system-product-management": "1.0.1"
+  }
+}
