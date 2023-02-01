@@ -23,9 +23,12 @@ class UserController extends Controller {
   }
 
   async logout() {
-    const { ctx } = this
-    if (ctx.session['front-end-packet-system']) {
-      ctx.session['front-end-packet-system'] = null
+    const {
+      ctx,
+      config: { session },
+    } = this
+    if (ctx.session[session.key]) {
+      ctx.session[session.key] = null
       this.success('注销成功')
     } else {
       this.failed('未登录')
@@ -51,8 +54,9 @@ class UserController extends Controller {
         ctx,
         app,
         service: { user },
+        config: { session },
       } = this
-      const token = ctx.session['front-end-packet-system']
+      const token = ctx.session[session.key]
       const decodeToken = app.jwt.decode(token)
       const { username } = decodeToken
       const userInfo = await user.getUserInfo(username)

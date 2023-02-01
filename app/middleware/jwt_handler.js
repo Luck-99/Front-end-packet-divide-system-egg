@@ -2,7 +2,7 @@
 
 module.exports = (options) => {
   return async function jwtHandler(ctx, next) {
-    const token = ctx.session['front-end-packet-system']
+    const token = ctx.session[ctx.app.config.session.key]
     if (token) {
       try {
         ctx.app.jwt.verify(token, options.secret)

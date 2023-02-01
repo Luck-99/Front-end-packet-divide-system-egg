@@ -31,7 +31,7 @@ class UserService extends BaseService {
         ctx,
         app,
         service: { file },
-        config: { USERCONFIGFILE },
+        config: { USERCONFIGFILE, session },
       } = this
       const { username, password } = params
       await this.initUser()
@@ -41,14 +41,8 @@ class UserService extends BaseService {
         : []
       const currentUser = users.find((item) => item.username === username)
       if (currentUser && currentUser.password === password) {
-        const token = app.jwt.sign(
-          {
-            username,
-            exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24小时有效
-          },
-          app.config.jwtHandler.secret
-        )
-        ctx.session['front-end-packet-system'] = token
+        const token = app.jwt.sign({ username }, app.config.jwtHandler.secret)
+        ctx.session[session.key] = token
         return this.success('登录成功')
       } else {
         return this.failed('账号或密码错误')

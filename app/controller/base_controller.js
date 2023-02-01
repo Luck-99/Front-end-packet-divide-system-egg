@@ -41,8 +41,9 @@ class BaseController extends Controller {
       app,
       ctx,
       service: { user },
+      config: { session },
     } = this
-    const token = ctx.session['front-end-packet-system']
+    const token = ctx.session[session.key]
     const info = app.jwt.decode(token)
     const res = await user.getUserInfo(info?.username)
     if (this.isSuccess(res)) {
