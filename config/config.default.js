@@ -96,8 +96,13 @@ module.exports = (appInfo) => {
   config.jwtHandler = {
     enable: true,
     secret: 'APEX-Front-end-packet-divide-system',
-    ignore: ['/registered', '/login'], // 不需要认证请求
+    ignore: ['/html/*', '/registered', '/login'], // 不需要认证请求
     expiresIn: '3d', //3天过期
+  }
+
+  config.static = {
+    prefix: '',
+    dir: path.join(appInfo.baseDir, 'app/public/html/'),
   }
 
   return {
