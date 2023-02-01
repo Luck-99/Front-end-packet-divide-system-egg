@@ -53,7 +53,7 @@ class FileController extends Controller {
       config: { PROJECTENVSNAME },
     } = this
     const { depData = '{}', envName } = request.body
-    const userName = await this.getCurrentUserName()
+    const userName = await this.getCurrentName()
     const cloneGit = await file.cloneGit()
     if (this.isSuccess(cloneGit)) {
       const changeEnv = await file.changeEnv(envName, depData)

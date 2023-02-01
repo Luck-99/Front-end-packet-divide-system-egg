@@ -95,6 +95,26 @@ class UserService extends BaseService {
       return this.failed(error.message)
     }
   }
+
+  async changePassWord(oldPassWord, newPassWord, username) {
+    try {
+      const {
+        service: { file },
+        config: { USERCONFIGFILE },
+      } = this
+      const tempUser = await file.readFile(USERCONFIGFILE)
+      const user = this.isSuccess(tempUser)
+        ? JSON.parse(this.getMsg(tempUser))
+        : []
+      const userInfo = user.find((user) => user.username === username)
+      console.log(username)
+      if (userInfo) {
+        return this.success(userInfo)
+      }
+    } catch (error) {
+      return this.failed(error.message)
+    }
+  }
 }
 
 module.exports = UserService

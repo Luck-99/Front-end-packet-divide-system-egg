@@ -52,9 +52,22 @@ class BaseController extends Controller {
     return {}
   }
 
-  async getCurrentUserName() {
+  async getCurrentName() {
     const res = await this.getCurrentUser()
     return res?.name
+  }
+
+  getCurrentUserName() {
+    const {
+      app,
+      ctx,
+      service: { user },
+      config: { session },
+    } = this
+    const token = ctx.session[session.key]
+    const info = app.jwt.decode(token)
+    const { username } = info
+    return username
   }
 
   async translateEnv(key) {

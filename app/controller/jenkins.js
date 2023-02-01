@@ -64,7 +64,7 @@ class JenkinsController extends Controller {
       } = this
       const { name = JENKINSJOBNAME, projectName } = ctx.query
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
-      const userName = await this.getCurrentUserName()
+      const userName = await this.getCurrentName()
       if (crumb) {
         const {
           headers: { location },
@@ -238,7 +238,7 @@ class JenkinsController extends Controller {
       id,
       projectName,
     } = ctx.request.body
-    const name = await this.getCurrentUserName()
+    const name = await this.getCurrentName()
     try {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
       if (crumb) {

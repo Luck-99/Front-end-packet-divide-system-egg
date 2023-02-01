@@ -56,9 +56,7 @@ class UserController extends Controller {
         service: { user },
         config: { session },
       } = this
-      const token = ctx.session[session.key]
-      const decodeToken = app.jwt.decode(token)
-      const { username } = decodeToken
+      const username = this.getCurrentUserName()
       const userInfo = await user.getUserInfo(username)
       if (this.isSuccess(userInfo)) {
         this.success('获取用户信息成功', this.getMsg(userInfo))
@@ -67,6 +65,22 @@ class UserController extends Controller {
       }
     } catch (error) {
       this.failed(error.message)
+    }
+  }
+
+  async changePassWord() {
+    const {
+      ctx,
+      app,
+      service: { user },
+    } = this
+    const { oldPassWord, newPassWord } = ctx.request.body
+    const username = this.getCurrentUserName()
+    const res = await user.changePassWord(oldPassWord, newPassWord, username)
+    if (this.isSuccess(res)) {
+      this.success('修改密码成功！', this.getMsg(res))
+    } else {
+      this.failed(this.getMsg(res))
     }
   }
 }

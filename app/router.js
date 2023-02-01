@@ -12,10 +12,11 @@ module.exports = (app) => {
 
   router.get('/html/*', home.server)
 
-  router.post('/login', user.login)
-  router.post('/logout', user.logout)
-  router.get('/getMembers', user.getMembers)
-  router.get('/getUserInfo', user.getUserInfo)
+  router.post('/user/login', user.login)
+  router.post('/user/logout', user.logout)
+  router.get('/user/getMembers', user.getMembers)
+  router.get('/user/getUserInfo', user.getUserInfo)
+  router.post('/user/changePassWord', user.changePassWord)
 
   router.get('/jenkins/getAllJobs', jenkins.getAllJobs)
   router.get('/jenkins/buildJob', jenkins.buildJob)
