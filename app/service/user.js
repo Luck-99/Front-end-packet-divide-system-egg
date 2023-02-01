@@ -106,11 +106,16 @@ class UserService extends BaseService {
       const user = this.isSuccess(tempUser)
         ? JSON.parse(this.getMsg(tempUser))
         : []
-      const userInfo = user.find((user) => user.username === username)
-      console.log(username)
-      if (userInfo) {
-        return this.success(userInfo)
+      const curUserInfo = user.find((user) => user.username === username)
+      if (curUserInfo.password !== oldPassWord) {
+        return this.failed('旧密码错误！')
       }
+      if (!newPassWord) {
+        return this.failed('新密码不能为空！')
+      }
+      curUserInfo.password = newPassWord
+      file.writeFile(USERCONFIGFILE, user)
+      return this.success('修改密码成功')
     } catch (error) {
       return this.failed(error.message)
     }
