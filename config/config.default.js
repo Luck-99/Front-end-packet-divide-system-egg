@@ -33,11 +33,11 @@ module.exports = (appInfo) => {
   }
 
   const jenkinsConfig = {
-    name: '',
-    token: '',
+    name: 'admin',
+    token: '11a35884626d208d00c9fbb25a71d6dfc6',
     protocol: 'http', //协议
-    domain: 'localhost', //域名
-    port: '9090', //端口
+    domain: '192.168.183.120', //域名
+    port: '8080', //端口
   }
   const { name, token, protocol, domain, port } = jenkinsConfig
 
@@ -58,7 +58,7 @@ module.exports = (appInfo) => {
 
   // add your user config here
   const userConfig = {
-    JENKINSJOBNAME: 'potal-mix',
+    JENKINSJOBNAME: 'frontend-publish',
     JENKINSURL: `${protocol}://${name}:${token}@${domain}:${port}`,
     VERDACCIOURL: 'http://192.168.183.123:4873/-/verdaccio',
     ...gitlabConfig,
@@ -96,7 +96,7 @@ module.exports = (appInfo) => {
   config.jwtHandler = {
     enable: true,
     secret: 'APEX-Front-end-packet-divide-system',
-    ignore: ['/html/*', '/registered', '/login'], // 不需要认证请求
+    ignore: ['/html/*', '/user/registered', '/user/login'], // 不需要认证请求
     expiresIn: '3d', //3天过期
   }
 
