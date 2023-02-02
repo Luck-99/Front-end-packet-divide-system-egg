@@ -44,7 +44,7 @@ class JenkinsController extends Controller {
           },
           dataType: 'json',
         })
-        this.success('构建成功', data)
+        this.success('启动构建成功', data)
         return
       }
       this.failed('crumb获取失败')
@@ -95,16 +95,16 @@ class JenkinsController extends Controller {
             null,
             queueId
           )
-          this.success('构建成功', queueId)
+          this.success('启动构建成功', queueId)
         } else {
-          this.failed('构建失败', data.message)
+          this.failed('启动构建失败', data.message)
         }
       } else {
         this.failed('crumb获取失败')
       }
     } catch (error) {
       console.log(error)
-      this.failed('构建失败')
+      this.failed('启动构建失败')
       return
     }
   }
