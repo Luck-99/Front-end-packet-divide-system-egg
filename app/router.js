@@ -10,7 +10,8 @@ module.exports = (app) => {
     io,
   } = app
 
-  router.get('/html/*', home.server)
+  router.get('index', '/html/*', home.server)
+  router.redirect('/', '/html/', 301)
 
   router.post('/user/login', user.login)
   router.post('/user/logout', user.logout)
