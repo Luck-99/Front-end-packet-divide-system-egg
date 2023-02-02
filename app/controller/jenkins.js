@@ -89,13 +89,14 @@ class JenkinsController extends Controller {
             id: null,
           })
           this.recordActions(
+            projectName,
             userName,
             await this.translateEnv(projectName),
             '构建',
             null,
-            queueId
+            queueId[0]
           )
-          this.success('启动构建成功', queueId)
+          this.success('启动构建成功', queueId[0])
         } else {
           this.failed('启动构建失败', data.message)
         }
@@ -263,6 +264,7 @@ class JenkinsController extends Controller {
           )
           if (!res.data) {
             this.recordActions(
+              projectName,
               name,
               await this.translateEnv(projectName),
               '停止构建',

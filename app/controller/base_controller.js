@@ -84,6 +84,7 @@ class BaseController extends Controller {
   }
 
   async recordActions(
+    key,
     userName,
     envName,
     action,
@@ -99,6 +100,7 @@ class BaseController extends Controller {
       const tempList = JSON.parse(this.getMsg(taskListRes))
       const obj = {
         id: tempList.length,
+        key,
         userName,
         envName,
         buildId,

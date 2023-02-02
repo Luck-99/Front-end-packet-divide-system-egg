@@ -29,7 +29,7 @@ module.exports = {
       for (let index = 0; index < tempData.length; index++) {
         const env = tempData[index]
         const tempEnv = { ...env }
-        const { building, id, queueId, builtBy } = tempEnv
+        const { building, id, queueId, builtBy, key } = tempEnv
         if (queueId) {
           const queueInfoRes = await jenkins.getQueueInfo(queueId)
           if (base.isSuccess(queueInfoRes)) {
@@ -52,6 +52,7 @@ module.exports = {
                 : []
               const obj = {
                 id: tempList.length,
+                key,
                 userName: builtBy,
                 envName: null,
                 action: '成功',
@@ -83,7 +84,7 @@ module.exports = {
                   },
                 })
               }
-              file.writeFile(TASKACTIONLIST, tempList)
+              await file.writeFile(TASKACTIONLIST, tempList)
             }
           }
         }

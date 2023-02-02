@@ -60,6 +60,7 @@ class FileController extends Controller {
       const commitGit = await file.commitGit(userName, envName)
       if (this.isSuccess(changeEnv) && this.isSuccess(commitGit)) {
         this.recordActions(
+          envName,
           userName,
           await this.translateEnv(envName),
           '配置更改'
