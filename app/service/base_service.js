@@ -18,6 +18,13 @@ class BaseService extends Service {
   getMsg(obj) {
     return obj.msg
   }
+
+  getGitFilePath(gitUrl) {
+    const gitReg = /(?<=\/\/).*(?=.git)/.exec(gitUrl)[0]
+    const splitReg = gitReg.split('/')
+    const GITFILEPATH = splitReg[splitReg.length - 1]
+    return GITFILEPATH
+  }
 }
 
 module.exports = BaseService

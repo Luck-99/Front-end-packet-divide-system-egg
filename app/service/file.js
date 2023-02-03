@@ -72,9 +72,7 @@ class FileService extends BaseService {
       config: { FILEPATH },
     } = this
     try {
-      const gitReg = /(?<=\/\/).*(?=.git)/.exec(GITPATH)[0]
-      const splitReg = gitReg.split('/')
-      const GITFILEPATH = splitReg[splitReg.length - 1]
+      const GITFILEPATH = this.getGitFilePath(GITPATH)
       if (await this.existPath(GITFILEPATH)) {
         execSync('git pull', {
           cwd: path.join(FILEPATH, GITFILEPATH),
