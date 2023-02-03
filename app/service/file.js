@@ -67,11 +67,14 @@ class FileService extends BaseService {
     }
   }
 
-  async cloneGit() {
+  async cloneGit(GITPATH) {
     const {
-      config: { FILEPATH, GITPATH, GITFILEPATH },
+      config: { FILEPATH },
     } = this
     try {
+      const gitReg = /(?<=\/\/).*(?=.git)/.exec(GITPATH)[0]
+      const splitReg = gitReg.split('/')
+      const GITFILEPATH = splitReg[splitReg.length - 1]
       if (await this.existPath(GITFILEPATH)) {
         execSync('git pull', {
           cwd: path.join(FILEPATH, GITFILEPATH),

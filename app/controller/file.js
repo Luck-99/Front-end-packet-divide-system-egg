@@ -50,11 +50,11 @@ class FileController extends Controller {
     const {
       ctx: { request },
       service: { file },
-      config: { PROJECTENVSNAME },
+      config: { PROJECTENVSNAME, GITPATH },
     } = this
     const { depData = '{}', envName } = request.body
     const userName = await this.getCurrentName()
-    const cloneGit = await file.cloneGit()
+    const cloneGit = await file.cloneGit(GITPATH)
     if (this.isSuccess(cloneGit)) {
       const changeEnv = await file.changeEnv(envName, depData)
       const commitGit = await file.commitGit(userName, envName)
@@ -119,6 +119,14 @@ class FileController extends Controller {
     } else {
       this.failed('失败')
     }
+  }
+
+  async buildDevProject() {
+    const {
+      ctx,
+      service: { file },
+    } = this
+    const { gitUrl } = ctx.request.body
   }
 }
 
