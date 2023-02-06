@@ -34,8 +34,8 @@ module.exports = (app) => {
   router.get('/verdaccio/getPackageInfo', verdaccio.getPackageInfo)
   router.get('/verdaccio/getPackageReadme', verdaccio.getPackageReadme)
 
-  router.get('/file/readFile', file.readFile)
-  router.post('/file/writeFile', file.writeFile)
+  // router.get('/file/readFile', file.readFile)
+  // router.post('/file/writeFile', file.writeFile)
   router.get('/file/getProjects', file.getProjects)
   router.post('/file/writeEnv', file.writeEnv)
   router.get('/file/getEnvDeps', file.getEnvDeps)
