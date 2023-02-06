@@ -41,6 +41,7 @@ module.exports = (app) => {
   router.get('/file/getEnvDeps', file.getEnvDeps)
   router.get('/file/getActionRecordList', file.getActionRecordList)
   router.get('/file/environmentSetting', file.environmentSetting)
+  router.post('/file/buildDevProject', file.buildDevProject)
 
   router.post('/gitlab/getProjects', gitlab.getProjects)
   router.post('/gitlab/getProjectCommits', gitlab.getProjectCommits)

@@ -127,6 +127,21 @@ class FileController extends Controller {
       service: { file },
     } = this
     const { gitUrl } = ctx.request.body
+    const cloneRes = await file.cloneGit(gitUrl)
+    const installRes = await file.installDep(gitUrl)
+    const versionRes = await file.versionUpdate(gitUrl)
+    const buildRes = await file.buildProject(gitUrl)
+    let publishRes = await file.publishProject(gitUrl)
+    if (this.isSuccess(cloneRes) && this.isSuccess(installRes)) {
+      while (!this.isSuccess(publishRes)) {
+        await file.versionUpdate(gitUrl)
+        await file.buildProject(gitUrl)
+        publishRes = await file.publishProject(gitUrl)
+      }
+      this.success('构建成功')
+    } else {
+      this.failed(this.getMsg(installRes))
+    }
   }
 }
 

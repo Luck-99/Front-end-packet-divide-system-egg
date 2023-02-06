@@ -84,7 +84,92 @@ class FileService extends BaseService {
           encoding: 'utf-8',
         })
       }
-      return this.success()
+      return this.success('目录拉取成功')
+    } catch (error) {
+      console.log(error)
+      return this.failed(error.stdout)
+    }
+  }
+
+  async installDep(GITPATH) {
+    const {
+      config: { FILEPATH },
+    } = this
+    try {
+      const GITFILEPATH = this.getGitFilePath(GITPATH)
+      if (await this.existPath(GITFILEPATH)) {
+        execSync('npm install --force', {
+          cwd: path.join(FILEPATH, GITFILEPATH),
+          encoding: 'utf-8',
+        })
+        return this.success('安装依赖成功')
+      } else {
+        return this.failed('目录不存在')
+      }
+    } catch (error) {
+      console.log(error)
+      return this.failed(error.stdout)
+    }
+  }
+
+  async versionUpdate(GITPATH) {
+    const {
+      config: { FILEPATH },
+    } = this
+    try {
+      const GITFILEPATH = this.getGitFilePath(GITPATH)
+      if (await this.existPath(GITFILEPATH)) {
+        execSync('npm version patch', {
+          cwd: path.join(FILEPATH, GITFILEPATH),
+          encoding: 'utf-8',
+        })
+        return this.success('版本号更新成功')
+      } else {
+        return this.failed('目录不存在')
+      }
+    } catch (error) {
+      console.log(error)
+      return this.failed(error.stdout)
+    }
+  }
+
+  async buildProject(GITPATH) {
+    const {
+      config: { FILEPATH },
+    } = this
+    try {
+      const GITFILEPATH = this.getGitFilePath(GITPATH)
+      if (await this.existPath(GITFILEPATH)) {
+        execSync('npm run build', {
+          cwd: path.join(FILEPATH, GITFILEPATH),
+          encoding: 'utf-8',
+        })
+        return this.success('构建成功')
+      } else {
+        return this.failed('目录不存在')
+      }
+    } catch (error) {
+      console.log(error)
+      return this.failed(error.stdout)
+    }
+  }
+
+  async publishProject(GITPATH) {
+    const {
+      config: { FILEPATH },
+    } = this
+    try {
+      const BUILDFOLDER = 'dist'
+      const GITFILEPATH = this.getGitFilePath(GITPATH)
+      if (await this.existPath(GITFILEPATH)) {
+        execSync('npm publish', {
+          cwd: path.join(FILEPATH, GITFILEPATH, BUILDFOLDER),
+          encoding: 'utf-8',
+        })
+        return this.success('发布成功')
+      } else {
+        return this.failed('目录不存在')
+      }
     } catch (error) {
       console.log(error)
       return this.failed(error.stdout)
