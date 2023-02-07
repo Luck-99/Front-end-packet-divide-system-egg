@@ -39,8 +39,16 @@ class UserService extends BaseService {
       const users = this.isSuccess(tempUsers)
         ? JSON.parse(this.getMsg(tempUsers))
         : []
+      const encryptionPassWord = ctx.helper.md5(password)
       const currentUser = users.find((item) => item.username === username)
       if (currentUser && currentUser.password === password) {
+        //未加密密码，直接改为加密密码
+        await this.changePassWord(password, encryptionPassWord, username)
+        const token = app.jwt.sign({ username }, app.config.jwtHandler.secret)
+        ctx.session[session.key] = token
+        return this.success('登录成功')
+      }
+      if (currentUser && currentUser.password === encryptionPassWord) {
         const token = app.jwt.sign({ username }, app.config.jwtHandler.secret)
         ctx.session[session.key] = token
         return this.success('登录成功')
