@@ -95,12 +95,28 @@ class FileController extends Controller {
 
   async getActionRecordList() {
     const {
+      ctx: { request },
       service: { file },
       config: { TASKACTIONLIST },
     } = this
+    const { envKey, startTime, endTime } = request.body
     const dataRes = await file.readFile(TASKACTIONLIST)
+    let data = JSON.parse(this.getMsg(dataRes))
+    if (envKey) {
+      data = data.filter((action) =>
+        typeof envKey === 'string'
+          ? action.key === envKey
+          : envKey.includes(action.key)
+      )
+    }
+    if (startTime) {
+      data = data.filter((action) => action.time >= startTime)
+    }
+    if (endTime) {
+      data = data.filter((action) => action.time <= endTime)
+    }
     if (this.isSuccess(dataRes)) {
-      this.success('获取成功', JSON.parse(this.getMsg(dataRes)))
+      this.success('获取成功', data)
     } else {
       this.failed('获取失败')
     }
