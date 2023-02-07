@@ -105,6 +105,12 @@ module.exports = (appInfo) => {
     dir: path.join(appInfo.baseDir, 'app/public/html/'),
   }
 
+  config.logger = {
+    // level: 'ALL',
+    dir: path.join(__dirname, '../logs/prod/'),
+    // outputJSON: true,
+  }
+
   return {
     ...config,
     ...userConfig,
