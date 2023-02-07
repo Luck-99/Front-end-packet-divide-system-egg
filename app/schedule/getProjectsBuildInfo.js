@@ -7,7 +7,7 @@ const Subscription = require('egg').Subscription
 module.exports = {
   schedule: {
     interval: '1s', // 1 分钟间隔
-    type: 'all', // 指定所有的 worker 都需要执行
+    type: 'worker', // 指定所有的 worker 都需要执行
   },
   async task(ctx) {
     const {
@@ -61,10 +61,10 @@ module.exports = {
                 time: Date.now(),
               }
               if (res.msg.result === 'SUCCESS') {
-                nsp.emit('jenkinsFileDownLoad', {
-                  envName: tempEnv.description,
-                  id: tempEnv.id,
-                })
+                // nsp.emit('jenkinsFileDownLoad', {
+                //   envName: tempEnv.description,
+                //   id: tempEnv.id,
+                // })
                 tempList.unshift({
                   ...obj,
                   ...{
@@ -84,7 +84,7 @@ module.exports = {
                   },
                 })
               }
-              await file.writeFile(TASKACTIONLIST, tempList)
+              file.writeFile(TASKACTIONLIST, tempList)
             }
           }
         }
