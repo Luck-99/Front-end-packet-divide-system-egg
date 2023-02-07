@@ -34,6 +34,7 @@ class UserService extends BaseService {
         config: { USERCONFIGFILE, session },
       } = this
       const { username, password } = params
+      const MAXPASSWORDLENGTH = 26
       await this.initUser()
       const tempUsers = await file.readFile(USERCONFIGFILE)
       const users = this.isSuccess(tempUsers)
@@ -41,6 +42,9 @@ class UserService extends BaseService {
         : []
       const encryptionPassWord = ctx.helper.md5(password)
       const currentUser = users.find((item) => item.username === username)
+      if (`${password}`.length > MAXPASSWORDLENGTH) {
+        return this.failed('密码超出长度')
+      }
       if (currentUser && currentUser.password === password) {
         //未加密密码，直接改为加密密码
         await this.changePassWord(password, encryptionPassWord, username)
