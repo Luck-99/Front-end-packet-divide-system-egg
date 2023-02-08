@@ -111,6 +111,7 @@ class UserService extends BaseService {
   async changePassWord(oldPassWord, newPassWord, username) {
     try {
       const {
+        ctx,
         service: { file },
         config: { USERCONFIGFILE },
       } = this
@@ -119,13 +120,13 @@ class UserService extends BaseService {
         ? JSON.parse(this.getMsg(tempUser))
         : []
       const curUserInfo = user.find((user) => user.username === username)
-      if (curUserInfo.password !== oldPassWord) {
+      if (curUserInfo.password !== ctx.helper.md5(oldPassWord)) {
         return this.failed('旧密码错误！')
       }
       if (!newPassWord) {
         return this.failed('新密码不能为空！')
       }
-      curUserInfo.password = newPassWord
+      curUserInfo.password = ctx.helper.md5(newPassWord)
       file.writeFile(USERCONFIGFILE, user)
       return this.success('修改密码成功')
     } catch (error) {
