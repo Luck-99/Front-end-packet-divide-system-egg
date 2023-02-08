@@ -86,6 +86,7 @@ class BaseController extends Controller {
   async recordActions(
     key,
     userName,
+    userKey,
     envName,
     action,
     buildId = null,
@@ -102,6 +103,7 @@ class BaseController extends Controller {
         id: tempList.length,
         key,
         userName,
+        userKey,
         envName,
         buildId,
         action,

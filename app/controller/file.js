@@ -53,15 +53,16 @@ class FileController extends Controller {
       config: { PROJECTENVSNAME, GITPATH },
     } = this
     const { depData = '{}', envName } = request.body
-    const userName = await this.getCurrentName()
+    const user = await this.getCurrentUser()
     const cloneGit = await file.cloneGit(GITPATH)
     if (this.isSuccess(cloneGit)) {
       const changeEnv = await file.changeEnv(envName, depData)
-      const commitGit = await file.commitGit(userName, envName)
+      const commitGit = await file.commitGit(user.name, envName)
       if (this.isSuccess(changeEnv) && this.isSuccess(commitGit)) {
         this.recordActions(
           envName,
-          userName,
+          user.name,
+          user.username,
           await this.translateEnv(envName),
           '配置更改'
         )
@@ -110,10 +111,10 @@ class FileController extends Controller {
       )
     }
     if (startTime) {
-      data = data.filter((action) => action.time >= startTime)
+      data = data.filter((action) => action.time >= Number(startTime))
     }
     if (endTime) {
-      data = data.filter((action) => action.time <= endTime)
+      data = data.filter((action) => action.time <= Number(endTime))
     }
     if (this.isSuccess(dataRes)) {
       this.success('获取成功', data)

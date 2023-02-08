@@ -64,7 +64,7 @@ class JenkinsController extends Controller {
       } = this
       const { name = JENKINSJOBNAME, projectName } = ctx.query
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
-      const userName = await this.getCurrentName()
+      const user = await this.getCurrentUser()
       if (crumb) {
         const {
           headers: { location },
@@ -82,7 +82,8 @@ class JenkinsController extends Controller {
         const queueId = /(?<=\/)[0-9]+(?=\/)/.exec(location)
         if (!data && queueId) {
           file.modifyProjectEnvs(projectName, {
-            builtBy: userName,
+            builtBy: user.name,
+            updateByUser: user.username,
             lastBuildTime: Date.now(),
             building: true,
             queueId: queueId[0],
@@ -90,7 +91,8 @@ class JenkinsController extends Controller {
           })
           this.recordActions(
             projectName,
-            userName,
+            user.name,
+            user.username,
             await this.translateEnv(projectName),
             '构建',
             null,
@@ -239,7 +241,7 @@ class JenkinsController extends Controller {
       id,
       projectName,
     } = ctx.request.body
-    const name = await this.getCurrentName()
+    const user = await this.getCurrentUser()
     try {
       const { crumb, crumbRequestField: Field } = await jenkins.getCrumb()
       if (crumb) {
@@ -265,7 +267,8 @@ class JenkinsController extends Controller {
           if (!res.data) {
             this.recordActions(
               projectName,
-              name,
+              user.name,
+              user.username,
               await this.translateEnv(projectName),
               '停止构建',
               number
@@ -273,7 +276,8 @@ class JenkinsController extends Controller {
             file.modifyProjectEnvs(projectName, {
               building: false,
               queueId: null,
-              updateBy: name,
+              updateBy: user.name,
+              updateByUser: user.username,
               updateTime: Date.now(),
               id: number ?? null,
             })

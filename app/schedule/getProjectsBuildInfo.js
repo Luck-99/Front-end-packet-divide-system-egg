@@ -29,7 +29,7 @@ module.exports = {
       for (let index = 0; index < tempData.length; index++) {
         const env = tempData[index]
         const tempEnv = { ...env }
-        const { building, id, queueId, builtBy, key } = tempEnv
+        const { building, id, queueId, builtBy, key, updateByUser } = tempEnv
         if (queueId) {
           const queueInfoRes = await jenkins.getQueueInfo(queueId)
           if (base.isSuccess(queueInfoRes)) {
@@ -54,6 +54,7 @@ module.exports = {
                 id: tempList.length,
                 key,
                 userName: builtBy,
+                userKey: updateByUser,
                 envName: null,
                 action: '成功',
                 actionDec: '构建结果',
