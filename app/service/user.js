@@ -78,6 +78,7 @@ class UserService extends BaseService {
         return {
           id: item.id,
           name: item.name,
+          username: item.username,
           avaUrl: item.avaUrl,
         }
       })
