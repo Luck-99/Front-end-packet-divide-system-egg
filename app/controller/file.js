@@ -100,9 +100,16 @@ class FileController extends Controller {
       service: { file },
       config: { TASKACTIONLIST },
     } = this
-    const { envKey, startTime, endTime } = request.body
+    const { userKey, envKey, startTime, endTime } = request.body
     const dataRes = await file.readFile(TASKACTIONLIST)
     let data = JSON.parse(this.getMsg(dataRes))
+    if (userKey) {
+      data = data.filter((action) =>
+        typeof userKey === 'string'
+          ? action.userKey === userKey
+          : userKey.includes(action.userKey)
+      )
+    }
     if (envKey) {
       data = data.filter((action) =>
         typeof envKey === 'string'
